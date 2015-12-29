@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Edge<T:Equatable>: Equatable {
+private struct Edge<T:Equatable>: Equatable {
     
     ///The vertices associated to this edge
     private var vertices: (from:Vertex<T>, to:Vertex<T>)
@@ -25,10 +25,10 @@ public struct Edge<T:Equatable>: Equatable {
 
 private enum VertexColor: Int { case White, Gray, Black }
 
-public class Vertex<T:Equatable>: Hashable {
+final public class Vertex<T:Equatable>: Hashable {
     
     ///The value for the vertex
-    private let value: T
+    public let value: T
     
     ///Wheter this vertex has been visited or not
     private var color = VertexColor.White
@@ -37,6 +37,8 @@ public class Vertex<T:Equatable>: Hashable {
     private var edges = [Edge<T>]()
     
     private let id: Int = NSUUID().UUIDString.hash
+    
+    ///The hash value
     public var hashValue: Int {
         return id
     }
@@ -50,7 +52,7 @@ extension Vertex: CustomStringConvertible {
     
     ///A textual representation of `self`.
     public var description: String {
-        return "\(self.value)"
+        return "<Vertex \(self.value)>"
     }
 }
 
@@ -58,7 +60,7 @@ public func ==<T>(lhs: Vertex<T>, rhs: Vertex<T>) -> Bool {
     return lhs.id == rhs.id
 }
 
-public func ==<T>(lhs: Edge<T>, rhs: Edge<T>) -> Bool {
+private func ==<T>(lhs: Edge<T>, rhs: Edge<T>) -> Bool {
    return lhs.vertices.from.value == rhs.vertices.from.value && rhs.vertices.to.value == rhs.vertices.to.value && lhs.weight == rhs.weight
 }
 
@@ -253,6 +255,117 @@ public class GraphGenerator<T:Equatable>: GeneratorType {
         }
         return nil
     }
+}
+
+//MARK: - Shortest Path
+
+public struct Path<T:Equatable>: Equatable {
+
+    ///The cost and the previous cost
+    public let cost: Int
+    
+    ///All the vertices included in the path
+    public let vertices: [Vertex<T>]
+    
+    ///The final destination for this path
+    public var destination: Vertex<T>? {
+        return self.vertices.last
+    }
+
+    private init(cost: Int, vertices: [Vertex<T>] = [Vertex<T>]()) {
+        self.cost = cost
+        self.vertices = vertices
+    }
+  
+    ///Creates a new path to the vertex passed as argument and with the additional cost
+    private func appendNew(increment: Int, to:Vertex<T>) -> Path<T> {
+        var v = self.vertices
+        v.append(to)
+        return Path(cost: self.cost + increment, vertices: v)
+    }
+}
+
+extension Path: CustomStringConvertible {
+    
+    ///A textual representation of `self`.
+    public var description: String {
+        return "<Path(\(cost)) \(vertices)>"
+    }
+}
+
+public func ==<T>(lhs: Path<T>, rhs: Path<T>) -> Bool {
+    return lhs.cost == rhs.cost && lhs.vertices == rhs.vertices
+}
+
+private func +<T>(lhs: Path<T>, rhs:(Int,Vertex<T>)) -> Path<T> {
+    return lhs.appendNew(rhs.0, to: rhs.1)
+}
+
+extension Graph {
+    
+    ///Compute the shortest path from a node to another using Dijkstra's algorithm.
+    ///The complexity is O(E+VlogV)
+    public func shortestPath(from: Vertex<T>, to: Vertex<T>) -> Path<T>? {
+        
+        var frontier = [Path<T>]()
+        var final = [Path<T>]()
+
+        //use the source edges to create the frontier
+        for e in from.edges {
+            frontier.append(Path(cost: e.weight, vertices: [from, e.vertices.to]))
+        }
+        
+        //support path changes using the greedy approach
+        while !frontier.isEmpty {
+            
+            var bestPath = Path<T>(cost: Int.max)
+            
+            var idx = 0
+            for i in 0..<frontier.count {
+                let p = frontier[i]
+                
+                if p.cost < bestPath.cost {
+                    bestPath = p
+                    idx = i
+                }
+            }
+            
+            //enumerate the bestPath edges
+            guard let edges = bestPath.destination?.edges else { continue }
+            
+            for e in edges {
+                let path = bestPath + (e.weight, e.vertices.to)
+                
+                if !frontier.contains(path) {
+                    frontier.append(path)
+                }
+            }
+            
+            //preserve the best path
+            if bestPath.destination == to {
+                final.append(bestPath)
+            }
+            
+            //remove the best path from the frontier
+            frontier.removeAtIndex(idx)
+        }
+
+        var shortestPath = Path<T>(cost: Int.max)
+
+        for path in final {
+            if path.destination == to && path.cost < shortestPath.cost {
+                shortestPath = path
+            }
+        }
+        
+        //there's no path found
+        if shortestPath.destination == nil {
+            return nil
+        }
+        
+        return shortestPath
+    }
+    
 }
 
 
