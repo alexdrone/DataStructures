@@ -2,7 +2,14 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-**DataStructures** is a collection of data structures implemented in Swift
+**DataStructures** is a collection of data structures implemented in Swift.
+For the time being the available data structures are:
+
+- LinkedList
+- SortedLinkedList
+- Stack
+- Queue
+- Graph 
 
 ## Installation
 

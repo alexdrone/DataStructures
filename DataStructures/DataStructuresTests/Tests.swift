@@ -69,7 +69,6 @@ class DataStructuresTests: XCTestCase {
         }
     }
     
-    
     func testArrayPerformance() {
         
         measureBlock { () -> Void in
