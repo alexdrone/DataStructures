@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		160C1D571C32E19100CF2916 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D561C32E19100CF2916 /* BinaryHeap.swift */; };
 		160C1D591C32E2A400CF2916 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D581C32E2A400CF2916 /* PriorityQueue.swift */; };
+		160C1D5B1C32EA9C00CF2916 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D5A1C32EA9C00CF2916 /* BloomFilter.swift */; };
+		160C1D5D1C32EAD800CF2916 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D5C1C32EAD800CF2916 /* BitArray.swift */; };
 		1644D68E1C32A5F1000B5F7B /* DataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644D68D1C32A5F1000B5F7B /* DataStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1644D6951C32A5F1000B5F7B /* DataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1644D68A1C32A5F1000B5F7B /* DataStructures.framework */; };
 		1644D69A1C32A5F1000B5F7B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6991C32A5F1000B5F7B /* Tests.swift */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		160C1D561C32E19100CF2916 /* BinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
 		160C1D581C32E2A400CF2916 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		160C1D5A1C32EA9C00CF2916 /* BloomFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BloomFilter.swift; sourceTree = "<group>"; };
+		160C1D5C1C32EAD800CF2916 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitArray.swift; sourceTree = "<group>"; };
 		1644D68A1C32A5F1000B5F7B /* DataStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1644D68D1C32A5F1000B5F7B /* DataStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStructures.h; sourceTree = "<group>"; };
 		1644D68F1C32A5F1000B5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				1644D68D1C32A5F1000B5F7B /* DataStructures.h */,
 				160C1D561C32E19100CF2916 /* BinaryHeap.swift */,
 				160C1D581C32E2A400CF2916 /* PriorityQueue.swift */,
+				160C1D5A1C32EA9C00CF2916 /* BloomFilter.swift */,
+				160C1D5C1C32EAD800CF2916 /* BitArray.swift */,
 				1644D68F1C32A5F1000B5F7B /* Info.plist */,
 			);
 			path = DataStructures;
@@ -217,8 +223,10 @@
 				1644D6A91C32A614000B5F7B /* Graph.swift in Sources */,
 				1644D6A71C32A614000B5F7B /* StackExtensions.swift in Sources */,
 				1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */,
+				160C1D5B1C32EA9C00CF2916 /* BloomFilter.swift in Sources */,
 				160C1D571C32E19100CF2916 /* BinaryHeap.swift in Sources */,
 				160C1D591C32E2A400CF2916 /* PriorityQueue.swift in Sources */,
+				160C1D5D1C32EAD800CF2916 /* BitArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

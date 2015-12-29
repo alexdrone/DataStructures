@@ -10,8 +10,10 @@ For the time being the available data structures are:
 - Stack
 - Queue
 - Graph 
-- BinaryHeap*
+- BinaryHeap
 - PriorityQueue*
+- BloomFilter*
+
 
 ## Installation
 
@@ -119,7 +121,12 @@ pQueue.enqueue(1)
 pQueue.enqueue(2)
 pQueue.dequeue() // 1
 
+//BloomFilter*
+var bFilter = BloomFilter<String>(expectedCount: 100)
+bFilter.insert("a")
+bFilter.contains("a") // true
+
 ```
 
 ## Credits
-\* Currently the PriorityQueue and the BinaryHeap data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
+\* Currently the PriorityQueue and the BloomFilter data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!

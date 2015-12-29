@@ -4,7 +4,7 @@
 //
 //  Created by Alex Usbergo on 29/12/15.
 //  Copyright © 2015 Alex Usbergo. All rights reserved.
-//  Edited from https://github.com/mauriciosantos/Buckets-Swift
+//  Forked from https://github.com/mauriciosantos/Buckets-Swift
 //
 
 import Foundation
