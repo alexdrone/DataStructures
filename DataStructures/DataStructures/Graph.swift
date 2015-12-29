@@ -25,7 +25,7 @@ private struct Edge<T:Equatable>: Equatable {
 
 private enum VertexColor: Int { case White, Gray, Black }
 
-final public class Vertex<T:Equatable>: Hashable {
+public class Vertex<T:Equatable>: Hashable {
     
     ///The value for the vertex
     public let value: T
@@ -61,10 +61,10 @@ public func ==<T>(lhs: Vertex<T>, rhs: Vertex<T>) -> Bool {
 }
 
 private func ==<T>(lhs: Edge<T>, rhs: Edge<T>) -> Bool {
-   return lhs.vertices.from.value == rhs.vertices.from.value && rhs.vertices.to.value == rhs.vertices.to.value && lhs.weight == rhs.weight
+    return lhs.vertices.from.value == rhs.vertices.from.value && rhs.vertices.to.value == rhs.vertices.to.value && lhs.weight == rhs.weight
 }
 
-public class Graph<T:Equatable>: ArrayLiteralConvertible {
+public struct Graph<T:Equatable>: ArrayLiteralConvertible {
     
     public typealias Element = T
     
@@ -73,7 +73,7 @@ public class Graph<T:Equatable>: ArrayLiteralConvertible {
     
     ///Wether this is a directed graph or not
     public var directed: Bool = false
-
+    
     ///Wether the graph is weighted or not
     public var weighted: Bool = false
     
@@ -95,21 +95,21 @@ public class Graph<T:Equatable>: ArrayLiteralConvertible {
     }
     
     /// Create an instance initialized with `elements`.
-    public required init(arrayLiteral elements: Element...) {
+    public init(arrayLiteral elements: Element...) {
         for element in elements {
             self.addVertex(element)
         }
     }
     
     ///Add a node to the graph
-    public func addVertex(value: T) -> Vertex<T> {
+    public mutating func addVertex(value: T) -> Vertex<T> {
         let vertex = Vertex(value: value)
         self.vertices.append(vertex)
         return vertex
     }
     
     ///Remove a vertex from the graph
-    public func removeVertext(vertex: Vertex<T>) {
+    public mutating func removeVertext(vertex: Vertex<T>) {
         
         func removeVertexFromEdges(fromVertex: Vertex<T>) {
             let edges = fromVertex.edges.filter() { return $0.vertices.to != vertex }
@@ -155,7 +155,7 @@ extension Graph {
     
     ///Performs a bfs search, complexity O(V+E)
     public func traverseBreadthFirst(start: Vertex<T>? = nil) -> [Vertex<T>] {
-    
+        
         let head = self.head ?? self.vertices.first
         guard let start = start ?? head else { return [Vertex<T>]() }
         
@@ -170,7 +170,7 @@ extension Graph {
             let vertex = queue.removeFirst()
             
             for e in vertex.edges {
-             
+                
                 //adds the 'to' vertex if the node is node visited yet
                 if e.vertices.to.color == VertexColor.White {
                     e.vertices.to.color = VertexColor.Gray
@@ -193,7 +193,7 @@ extension Graph {
     
     ///Performs a dfs search, complexity O(V+E)
     public func traverseDepthFirst(start: Vertex<T>?) -> [Vertex<T>] {
-    
+        
         //recursive dfs visit
         func visit(vertex: Vertex<T>, input: [Vertex<T>]) -> [Vertex<T>] {
             
@@ -260,7 +260,7 @@ public class GraphGenerator<T:Equatable>: GeneratorType {
 //MARK: - Shortest Path
 
 public struct Path<T:Equatable>: Equatable {
-
+    
     ///The cost and the previous cost
     public let cost: Int
     
@@ -271,12 +271,12 @@ public struct Path<T:Equatable>: Equatable {
     public var destination: Vertex<T>? {
         return self.vertices.last
     }
-
+    
     private init(cost: Int, vertices: [Vertex<T>] = [Vertex<T>]()) {
         self.cost = cost
         self.vertices = vertices
     }
-  
+    
     ///Creates a new path to the vertex passed as argument and with the additional cost
     private func appendNew(increment: Int, to:Vertex<T>) -> Path<T> {
         var v = self.vertices
@@ -309,7 +309,7 @@ extension Graph {
         
         var frontier = [Path<T>]()
         var final = [Path<T>]()
-
+        
         //use the source edges to create the frontier
         for e in from.edges {
             frontier.append(Path(cost: e.weight, vertices: [from, e.vertices.to]))
@@ -349,9 +349,9 @@ extension Graph {
             //remove the best path from the frontier
             frontier.removeAtIndex(idx)
         }
-
+        
         var shortestPath = Path<T>(cost: Int.max)
-
+        
         for path in final {
             if path.destination == to && path.cost < shortestPath.cost {
                 shortestPath = path

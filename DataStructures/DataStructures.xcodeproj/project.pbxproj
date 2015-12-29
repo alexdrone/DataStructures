@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160C1D571C32E19100CF2916 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D561C32E19100CF2916 /* BinaryHeap.swift */; };
+		160C1D591C32E2A400CF2916 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D581C32E2A400CF2916 /* PriorityQueue.swift */; };
 		1644D68E1C32A5F1000B5F7B /* DataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644D68D1C32A5F1000B5F7B /* DataStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1644D6951C32A5F1000B5F7B /* DataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1644D68A1C32A5F1000B5F7B /* DataStructures.framework */; };
 		1644D69A1C32A5F1000B5F7B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6991C32A5F1000B5F7B /* Tests.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160C1D561C32E19100CF2916 /* BinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
+		160C1D581C32E2A400CF2916 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		1644D68A1C32A5F1000B5F7B /* DataStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1644D68D1C32A5F1000B5F7B /* DataStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStructures.h; sourceTree = "<group>"; };
 		1644D68F1C32A5F1000B5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				1644D6A51C32A614000B5F7B /* Graph.swift */,
 				1644D6A61C32A614000B5F7B /* LinkedList.swift */,
 				1644D68D1C32A5F1000B5F7B /* DataStructures.h */,
+				160C1D561C32E19100CF2916 /* BinaryHeap.swift */,
+				160C1D581C32E2A400CF2916 /* PriorityQueue.swift */,
 				1644D68F1C32A5F1000B5F7B /* Info.plist */,
 			);
 			path = DataStructures;
@@ -211,6 +217,8 @@
 				1644D6A91C32A614000B5F7B /* Graph.swift in Sources */,
 				1644D6A71C32A614000B5F7B /* StackExtensions.swift in Sources */,
 				1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */,
+				160C1D571C32E19100CF2916 /* BinaryHeap.swift in Sources */,
+				160C1D591C32E2A400CF2916 /* PriorityQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +404,7 @@
 				1644D6A01C32A5F1000B5F7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1644D6A11C32A5F1000B5F7B /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +413,7 @@
 				1644D6A31C32A5F1000B5F7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

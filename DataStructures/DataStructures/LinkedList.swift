@@ -43,7 +43,7 @@ final public class LinkedListNode<T>: HeadLinkedListNode<T> {
 public class HeadLinkedListNode<T> {
     
     //a reference to the linked list
-    private weak var linkedList: LinkedList<T>?
+    private var linkedList: LinkedList<T>?
     
     //the previous and the next node
     internal var next: LinkedListNode<T>?
@@ -105,7 +105,7 @@ public class LinkedList<T>: ArrayLiteralConvertible {
     }
     
     /// Create an instance initialized with `elements`.
-    public convenience required init(arrayLiteral elements: Element...) {
+    public required convenience init(arrayLiteral elements: Element...) {
         self.init()
     
         for item in elements {
@@ -267,7 +267,7 @@ extension LinkedList: CustomStringConvertible {
     }
 }
 
-public class LinkedListGenerator<T>: GeneratorType {
+public struct LinkedListGenerator<T>: GeneratorType {
     
     public typealias Element = T
     
@@ -280,7 +280,7 @@ public class LinkedListGenerator<T>: GeneratorType {
     }
     
     ///Advance to the next element and return it, or `nil` if no next element exists.
-    public func next() -> Element? {
+    public mutating func next() -> Element? {
 
         let node = self.current?.next
         self.current = node

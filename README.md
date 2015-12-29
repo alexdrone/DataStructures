@@ -10,6 +10,8 @@ For the time being the available data structures are:
 - Stack
 - Queue
 - Graph 
+- BinaryHeap*
+- PriorityQueue*
 
 ## Installation
 
@@ -26,4 +28,98 @@ Then add the following line to your `Cartfile`:
 
 ```
 github "alexdrone/DataStructures" "master"    
+
 ```
+
+## Usage
+
+All collection types are implemented as structures with the exception of the LinkedList data structure. This means they are copied when they are assigned to a new constant or variable, or when they are passed to a function or method. 
+
+About copying structs:  
+
+> The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
+
+### Walkthrough
+
+```swift
+import Buckets
+
+//LinkedList
+let linkedList = LinkedList<Int>()
+linkedList.append(1)
+linkedList.append(2)
+print(linkedList) //[1,2]
+
+let sortedLinkedList = SortedLinkedList<Int>()
+linkedList.append(3)
+linkedList.append(1)
+linkedList.append(2)
+print(sortedLinkedList) //[1,2,3]
+
+//Graph (graphs can be directed/undirected and weighted/not weighted)
+let graph = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
+
+graph.addEdge(g[1], to: g[2])
+graph.addEdge(g[1], to: g[3])
+graph.addEdge(g[1], to: g[5])
+graph.addEdge(g[2], to: g[4])
+graph.addEdge(g[4], to: g[5])
+graph.addEdge(g[5], to: g[6])
+
+//bfs visit expected [1, 2, 3, 5, 4, 6]
+let bfs = g.traverseBreadthFirst().map() { return $0.value }
+
+//shortest path
+
+var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
+g.directed = true
+g.weighted = true
+
+g.addEdge(g[1], to: g[2], weight: 2)
+g.addEdge(g[1], to: g[3], weight: 3)
+g.addEdge(g[1], to: g[5], weight: 6)
+g.addEdge(g[2], to: g[4], weight: 1)
+g.addEdge(g[4], to: g[5], weight: 1)
+g.addEdge(g[5], to: g[6], weight: 10)
+
+//shortest path from 1 to 5, expected [1, 2, 4, 5] with cost 4
+let p = g.shortestPath(g[1], to: g[5])
+(p?.vertices.map(){ return $0.value} //[1,2,4,5]
+
+//Stacks and Queues are implemented through Array and LinkedList extension
+
+extension LinkedList : Stack {
+    public func pop() -> T?
+    public func push(element: T)
+    public func peekStack() -> T?
+}
+
+extension Array : Stack {
+    public func pop() -> T?
+    public func push(element: T)
+    public func peekStack() -> T?
+}
+
+extension LinkedList: Queue {
+    public func enqueue(element: Q)    
+    public func dequeue() -> Q?     
+    public func peekQueue() -> Q?
+}
+
+extension Array: Queue {
+    public func enqueue(element: Q)    
+    public func dequeue() -> Q?     
+    public func peekQueue() -> Q?
+}
+
+//PriorityQueue*
+var pQueue = PriorityQueue<Int>(<)
+pQueue.enqueue(3)
+pQueue.enqueue(1)
+pQueue.enqueue(2)
+pQueue.dequeue() // 1
+
+```
+
+## Credits
+\* Currently the PriorityQueue and the BinaryHeap data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
