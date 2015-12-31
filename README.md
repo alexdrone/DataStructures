@@ -135,4 +135,4 @@ bFilter.contains("a") // true
 
 ## Credits
 \* Currently the PriorityQueue and the BloomFilter data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
-The RedBlackTree datastructure is adapted from https://github.com/oisdk/SwiftDataStructures
+The RedBlackTree datastructure is adapted from [SwiftDataStructures](https://github.com/oisdk/SwiftDataStructures) 
