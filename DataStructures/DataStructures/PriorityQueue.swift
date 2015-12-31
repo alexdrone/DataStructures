@@ -14,9 +14,7 @@ import Foundation
 /// elements with the highest priority are dequeued first).
 /// The `enqueue` and `dequeue` operations run in O(log(n)) time.
 public struct PriorityQueue<T> {
-    
-    // MARK: Creating a Priority Queue
-    
+        
     /// Constructs an empty priority queue using a closure to
     /// determine the order of a provided pair of elements. The closure that you supply for
     /// `isOrderedBefore` should return a boolean value to indicate whether one element

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import DataStructures
+@testable import DataStructures
 
 class GraphTest: XCTestCase {
     
@@ -247,4 +247,223 @@ class BloomFilterTests: XCTestCase {
         XCTAssertTrue(bloomFilter.isEmpty)
         XCTAssertFalse(bloomFilter.contains(1))
     }
+}
+
+class RedBlackTreeTests: XCTestCase {
+    
+    func testEmptyInit() {
+        let empty = RedBlackTree<Int>()
+        XCTAssert(empty.isEmpty)
+        XCTAssert(empty.isBalanced)
+    }
+    
+    func testSeqInit() {
+        let seq = (0...100).map { _ in arc4random_uniform(100) }
+        let set = Set(seq)
+        let tree = RedBlackTree(seq)
+        let setFromRedBlackTree = Set(tree)
+        XCTAssertEqual(set, setFromRedBlackTree)
+        XCTAssert(tree.isBalanced)
+    }
+    
+    func testArrayLiteralInit() {
+        let tree: RedBlackTree = [1, 3, 5, 6, 7, 8, 9]
+        XCTAssert(tree.elementsEqual([1, 3, 5, 6, 7, 8, 9]))
+        XCTAssert(tree.isBalanced)
+    }
+    
+    func testDebugDescription() {
+        let seq = (0...100).map { _ in arc4random_uniform(100) }
+        let arr = Set(seq).sort()
+        let tre = RedBlackTree(seq)
+        XCTAssertEqual(arr.debugDescription, tre.debugDescription)
+        XCTAssert(tre.isBalanced)
+    }
+    
+    func testFirst() {
+        let seq = (0...100).map { _ in arc4random_uniform(100) }
+        let set = Set(seq)
+        let tre = RedBlackTree(seq)
+        XCTAssertEqual(set.minElement(), tre.first)
+        XCTAssert(tre.isBalanced)
+    }
+    
+    func testLast() {
+        let seq = (0...100).map { _ in arc4random_uniform(100) }
+        let set = Set(seq)
+        let tre = RedBlackTree(seq)
+        XCTAssertEqual(set.maxElement(), tre.last)
+        XCTAssert(tre.isBalanced)
+    }
+    
+    func testIsEmpty() {
+        let seq = (0...10).map { _ in arc4random_uniform(100) }
+        XCTAssertFalse(RedBlackTree(seq).isEmpty)
+        XCTAssert(RedBlackTree(seq).isBalanced)
+    }
+    
+    func testCount() {
+        let seq = (0...1000).map { _ in arc4random_uniform(100) }
+        let tre = RedBlackTree(seq)
+        XCTAssertEqual(Set(seq).count, tre.count)
+        XCTAssert(tre.isBalanced)
+    }
+    
+    func testContains() {
+        let seq = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let set = Set(seq)
+        let tre = RedBlackTree(seq)
+        for i in 0...110 {
+            XCTAssertEqual(set.contains(i), tre.contains(i))
+            XCTAssert(tre.isBalanced)
+        }
+    }
+    
+    func testRemoveMin() {
+        let seq = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        var set = Set(seq)
+        var tre = RedBlackTree(seq)
+        for _ in 0...110 {
+            XCTAssertEqual(set.minElement().flatMap { set.remove($0) }, tre.popFirst())
+            XCTAssert(tre.isBalanced)
+        }
+    }
+    
+    func testRemoveMax() {
+        let seq = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        var set = Set(seq)
+        var tre = RedBlackTree(seq)
+        for _ in 0...110 {
+            XCTAssertEqual(set.maxElement().flatMap { set.remove($0) }, tre.popLast())
+            XCTAssert(tre.isBalanced)
+        }
+    }
+    
+    func testRemove() {
+        let seq = (0...100).map { _ in arc4random_uniform(100) }
+        var set = Set(seq)
+        var tre = RedBlackTree(seq)
+        for _ in 0...10000 {
+            let i = arc4random_uniform(110)
+            XCTAssertEqual(set.remove(i), tre.remove(i))
+            XCTAssert(tre.isBalanced)
+        }
+    }
+    
+    func testReverse() {
+        let seq = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sorted = Set(seq).sort(>)
+        let tree = RedBlackTree(seq)
+        XCTAssert(sorted.elementsEqual(tree.reverse()))
+        
+    }
+    
+    func testSeqType() {
+        let seq = (0...10000).map { _ in arc4random_uniform(UInt32.max) }
+        let expectation = Set(seq).sort()
+        let reality = RedBlackTree(seq)
+        XCTAssert(expectation.elementsEqual(reality))
+    }
+    
+    func testExclusiveOr() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let set = Set(fst)
+        let tre = RedBlackTree(fst)
+        let treeOr = tre.exclusiveOr(sec)
+        let setOr = set.exclusiveOr(sec).sort()
+        XCTAssert(treeOr.isBalanced)
+        XCTAssert(treeOr.elementsEqual(setOr))
+    }
+    
+    func testExclusiveOrInPlace() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        var set = Set(fst)
+        var tre = RedBlackTree(fst)
+        tre.exclusiveOrInPlace(sec)
+        set.exclusiveOrInPlace(sec)
+        let setOr = set.sort()
+        XCTAssert(tre.isBalanced)
+        XCTAssert(tre.elementsEqual(setOr))
+    }
+    
+    func testIntersect() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let set = Set(fst)
+        let tre = RedBlackTree(fst)
+        let treeIn = tre.intersect(sec)
+        let setIn = set.intersect(sec).sort()
+        XCTAssert(treeIn.isBalanced)
+        XCTAssert(treeIn.elementsEqual(setIn))
+    }
+
+    func testDisjoint() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let withoutSec = Set(fst).subtract(sec)
+        let tree = RedBlackTree(withoutSec)
+        XCTAssert(tree.isDisjointWith(sec))
+        XCTAssert(tree.isBalanced)
+    }
+    
+    func testSuperset() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let with = Set(fst).union(sec)
+        let tree = RedBlackTree(with)
+        XCTAssert(tree.isSupersetOf(sec))
+        XCTAssert(tree.isBalanced)
+    }
+    
+    func testSubset() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let with = Set(fst).union(sec)
+        let tree = RedBlackTree(fst)
+        XCTAssert(tree.isSubsetOf(with))
+        XCTAssert(tree.isBalanced)
+    }
+    
+    func testSubtract() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let withoutSec = Set(fst).subtract(sec)
+        let withoutTre = RedBlackTree(fst).subtract(sec)
+        XCTAssert(withoutSec.sort().elementsEqual(withoutTre))
+        XCTAssert(withoutTre.isBalanced)
+    }
+    
+    func testSubtractInPlace() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        var withoutSec = Set(fst)
+        withoutSec.subtractInPlace(sec)
+        var withoutTre = RedBlackTree(fst)
+        withoutTre.subtractInPlace(sec)
+        XCTAssert(withoutSec.sort().elementsEqual(withoutTre))
+        XCTAssert(withoutTre.isBalanced)
+    }
+    
+    func testUnion() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let unionSet = Set(fst).union(sec)
+        let unionTre = RedBlackTree(fst).union(sec)
+        XCTAssert(unionSet.sort().elementsEqual(unionTre))
+        XCTAssert(unionTre.isBalanced)
+    }
+    
+    func testUnionInPlace() {
+        let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
+        var unionSet = Set(fst)
+        unionSet.unionInPlace(sec)
+        var unionTre = RedBlackTree(fst)
+        unionTre.unionInPlace(sec)
+        XCTAssert(unionSet.sort().elementsEqual(unionTre))
+        XCTAssert(unionTre.isBalanced)
+    }
+    
 }

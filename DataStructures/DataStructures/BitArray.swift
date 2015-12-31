@@ -18,8 +18,6 @@ import Foundation
 /// `ArrayLiteralConvertible`, `Equatable`, `Hashable`, `Printable`, `DebugPrintable` and `ReconstructableSequence`.
 public struct BitArray {
     
-    // MARK: Creating a BitArray
-    
     /// Constructs an empty bit array.
     public init() {}
     
@@ -61,8 +59,6 @@ public struct BitArray {
         }
     }
     
-    // MARK: Querying a BitArray
-    
     /// Number of bits stored in the bit array.
     public private(set) var count = 0
     
@@ -84,8 +80,6 @@ public struct BitArray {
     /// The number of bits set to `true` in the bit array.
     public private(set) var cardinality = 0
     
-    
-    // MARK: Adding and Removing Bits
     
     /// Adds a new `Bool` as the last bit.
     public mutating func append(bit: Bool) {
@@ -152,8 +146,6 @@ public struct BitArray {
         cardinality = 0
     }
     
-    // MARK: Private Properties and Helper Methods
-    
     /// Structure holding the bits.
     private var bits = [Int]()
     
@@ -196,9 +188,7 @@ public struct BitArray {
             fatalError("Index out of range (\(index))")
         }
     }
-    
-    // MARK: Constants
-    
+        
     private struct Constants {
         // Int size in bits
         static let IntSize = sizeof(Int) * 8
@@ -209,8 +199,6 @@ public struct BitArray {
 
 extension BitArray: SequenceType {
     
-    // MARK: SequenceType Protocol Conformance
-    
     /// Provides for-in loop functionality.
     ///
     /// - returns: A generator over the bits.
@@ -220,8 +208,6 @@ extension BitArray: SequenceType {
 }
 
 extension BitArray: MutableCollectionType {
-    
-    // MARK: MutableCollectionType Protocol Conformance
     
     /// Always zero, which is the index of the first bit when non-empty.
     public var startIndex : Int {
@@ -252,8 +238,6 @@ extension BitArray: MutableCollectionType {
 
 extension BitArray: ArrayLiteralConvertible {
     
-    // MARK: ArrayLiteralConvertible Protocol Conformance
-    
     /// Constructs a bit array using a `Bool` array literal.
     /// `let example: BitArray = [true, false, true]`
     public init(arrayLiteral elements: Bool...) {
@@ -265,8 +249,6 @@ extension BitArray: ArrayLiteralConvertible {
 }
 
 extension BitArray: CustomStringConvertible {
-    
-    // MARK: CustomStringConvertible Protocol Conformance
     
     /// A string containing a suitable textual
     /// representation of the bit array.

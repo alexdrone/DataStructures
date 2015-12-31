@@ -13,6 +13,7 @@ For the time being the available data structures are:
 - BinaryHeap
 - PriorityQueue*
 - BloomFilter*
+- RedBlackTree*
 
 
 ## Installation
@@ -126,7 +127,12 @@ var bFilter = BloomFilter<String>(expectedCount: 100)
 bFilter.insert("a")
 bFilter.contains("a") // true
 
+///RedBlackTree*
+ let tree = RedBlackTree<Int>(arrayLiteral:[1, 3, 5, 6, 7, 8, 9])
+ tree.popFirst()
+
 ```
 
 ## Credits
 \* Currently the PriorityQueue and the BloomFilter data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
+The RedBlackTree datastructure is adapted from https://github.com/oisdk/SwiftDataStructures
