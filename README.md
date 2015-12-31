@@ -13,8 +13,8 @@ For the time being the available data structures are:
 - BinaryHeap
 - PriorityQueue*
 - BloomFilter*
-- RedBlackTree*
-
+- Trie*
+- RedBlackTree
 
 ## Installation
 
@@ -126,6 +126,12 @@ pQueue.dequeue() // 1
 var bFilter = BloomFilter<String>(expectedCount: 100)
 bFilter.insert("a")
 bFilter.contains("a") // true
+
+//Trie*
+var trie = Trie()
+trie.insert("Apple")
+trie.insert("App Store")
+trie.findPrefix("App") // ["App Store", "Apple"]
 
 ///RedBlackTree*
  let tree = RedBlackTree<Int>(arrayLiteral:[1, 3, 5, 6, 7, 8, 9])
