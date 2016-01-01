@@ -307,29 +307,19 @@ extension Graph {
     ///- Complexity: is O(E+VlogV)
     public func shortestPath(from: Vertex<T>, to: Vertex<T>) -> Path<T>? {
         
-        var frontier = [Path<T>]()
+        var frontier = PriorityQueue<Path<T>>({ return $0.cost < $1.cost })
         var final = [Path<T>]()
         
         //use the source edges to create the frontier
         for e in from.edges {
-            frontier.append(Path(cost: e.weight, vertices: [from, e.vertices.to]))
+            frontier.enqueue(Path(cost: e.weight, vertices: [from, e.vertices.to]))
         }
         
         //support path changes using the greedy approach
         while !frontier.isEmpty {
             
-            var bestPath = Path<T>(cost: Int.max)
-            
-            var idx = 0
-            for i in 0..<frontier.count {
-                let p = frontier[i]
-                
-                if p.cost < bestPath.cost {
-                    bestPath = p
-                    idx = i
-                }
-            }
-            
+            let bestPath = frontier.dequeue()!
+
             //enumerate the bestPath edges
             guard let edges = bestPath.destination?.edges else { continue }
             
@@ -337,7 +327,7 @@ extension Graph {
                 let path = bestPath + (e.weight, e.vertices.to)
                 
                 if !frontier.contains(path) {
-                    frontier.append(path)
+                    frontier.enqueue(path)
                 }
             }
             
@@ -346,8 +336,6 @@ extension Graph {
                 final.append(bestPath)
             }
             
-            //remove the best path from the frontier
-            frontier.removeAtIndex(idx)
         }
         
         var shortestPath = Path<T>(cost: Int.max)
