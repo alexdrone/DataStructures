@@ -45,7 +45,7 @@ About copying structs:
 ### Walkthrough
 
 ```swift
-import Buckets
+import DataStructures
 
 //LinkedList
 let linkedList = LinkedList<Int>()

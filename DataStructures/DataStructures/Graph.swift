@@ -304,7 +304,7 @@ private func +<T>(lhs: Path<T>, rhs:(Int,Vertex<T>)) -> Path<T> {
 extension Graph {
     
     ///Compute the shortest path from a node to another using Dijkstra's algorithm.
-    ///The complexity is O(E+VlogV)
+    ///- Complexity: is O(E+VlogV)
     public func shortestPath(from: Vertex<T>, to: Vertex<T>) -> Path<T>? {
         
         var frontier = [Path<T>]()

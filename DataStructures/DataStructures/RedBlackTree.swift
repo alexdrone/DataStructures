@@ -466,7 +466,6 @@ public protocol SetType : SequenceType {
     mutating func XOR(x: Generator.Element)
 }
 
-
 extension SetType {
     
     ///Return a new SetType with elements that are either in `self` or a finite

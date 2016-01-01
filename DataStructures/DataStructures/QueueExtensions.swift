@@ -52,4 +52,13 @@ extension Array: Queue {
     }
 }
 
+extension PriorityQueue: Queue {
+    
+    public typealias Q = T
+    
+    ///Returns the first element of the queue
+    public func peekQueue() -> Q? {
+        return self.first
+    }
+}
 
