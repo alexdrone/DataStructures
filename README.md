@@ -1,6 +1,9 @@
 # DataStructures
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build](https://img.shields.io/badge/build-passing-green.svg?style=flat)](#)
+[![Platform](https://img.shields.io/badge/platform-ios | osx | watchos | tvos -lightgrey.svg?style=flat)](#)
+[![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 A collection of data structures implemented in Swift.
 For the time being the available data structures are:
@@ -42,7 +45,8 @@ About copying structs:
 
 > The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
 
-### Walkthrough
+## Walkthrough
+
 
 ```swift
 import DataStructures
