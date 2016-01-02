@@ -47,6 +47,73 @@ class GraphTest: XCTestCase {
         XCTAssert(p?.cost == 4)
         XCTAssert((p?.vertices.map(){ return $0.value})! == [1,2,4,5])
     }
+    
+    func testDfs() {
+        var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
+        g.directed = false
+        
+        g.addEdge(g[1], to: g[2], weight: 2)
+        g.addEdge(g[1], to: g[3], weight: 3)
+        g.addEdge(g[1], to: g[5], weight: 6)
+        g.addEdge(g[2], to: g[4], weight: 1)
+        g.addEdge(g[4], to: g[5], weight: 1)
+        g.addEdge(g[5], to: g[6], weight: 10)
+    }
+    
+    let noCycle: Dictionary<String, [String]> = [
+        "A": [],
+        "B": [],
+        "C": ["D"],
+        "D": ["A"],
+        "E": ["C", "B"],
+        "F": ["E"]
+    ]
+    
+    let cycle: Dictionary<String, [String]> = [
+        "A": [],
+        "B": ["F"],
+        "C": ["D"],
+        "D": ["A"],
+        "E": ["C", "B"],
+        "F": ["E"],
+    ]
+    
+    let noCycleResult = ["A", "B", "D", "C", "E", "F"]
+
+    func testTopoSort() {
+        
+        XCTAssert(try! topoSort(noCycle) == noCycleResult)
+        
+        do {
+            try topoSort(cycle)
+            XCTAssert(false)
+
+        } catch {
+            XCTAssert(true)
+        }
+    }
+    
+    func testTopologicalSort() {
+        
+        var g = Graph<String>(directed: true, weighted: false)
+        g.populateFromDependencyList(noCycle)
+
+        XCTAssert(try! topoSort(g.toDependencyList()) == noCycleResult)
+        XCTAssert(g.isDirectedAcyclic() == true)
+        
+        g = Graph<String>(directed: true, weighted: false)
+        g.populateFromDependencyList(cycle)
+        XCTAssert(g.isDirectedAcyclic() == false)
+
+        do {
+            try topoSort(g.toDependencyList())
+            XCTAssert(false)
+            
+        } catch {
+            XCTAssert(true)
+        }
+        
+    }
 }
 
 class LinkedListTest: XCTestCase {
