@@ -89,6 +89,15 @@ g.addEdge(g[5], to: g[6], weight: 10)
 let p = g.shortestPath(g[1], to: g[5])
 (p?.vertices.map(){ return $0.value} //[1,2,4,5]
 
+///topological sort and cycle check
+let noCycle: Dictionary<String, [String]> = [ "A": [],  "B": [],  "C": ["D"], "D": ["A"], "E": ["C", "B"],  "F": ["E"] ]
+
+var g = Graph<String>(directed: true, weighted: false)
+g.populateFromDependencyList(noCycle)
+
+g.isDirectedAcyclic() //true
+g.topologicalSort() // ["A", "B", "D", "C", "E", "F"]
+ 
 //Stacks and Queues are implemented through Array and LinkedList extension
 
 extension LinkedList : Stack {

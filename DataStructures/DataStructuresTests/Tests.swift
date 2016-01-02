@@ -61,21 +61,11 @@ class GraphTest: XCTestCase {
     }
     
     let noCycle: Dictionary<String, [String]> = [
-        "A": [],
-        "B": [],
-        "C": ["D"],
-        "D": ["A"],
-        "E": ["C", "B"],
-        "F": ["E"]
+        "A": [],  "B": [],  "C": ["D"], "D": ["A"], "E": ["C", "B"],  "F": ["E"]
     ]
     
     let cycle: Dictionary<String, [String]> = [
-        "A": [],
-        "B": ["F"],
-        "C": ["D"],
-        "D": ["A"],
-        "E": ["C", "B"],
-        "F": ["E"],
+        "A": [],  "B": ["F"],  "C": ["D"],   "D": ["A"],  "E": ["C", "B"],  "F": ["E"],
     ]
     
     let noCycleResult = ["A", "B", "D", "C", "E", "F"]
