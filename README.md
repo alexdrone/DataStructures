@@ -48,20 +48,39 @@ About copying structs:
 ## Walkthrough
 
 
+###LinkedList
+
+All of the operations perform as could be expected for a doubly-linked list. Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index.
+
+Note that this implementation is not synchronized. If multiple threads access a linked list concurrently, and at least one of the threads modifies the list structurally, it must be synchronized externally.
+
 ```swift
 import DataStructures
 
-//LinkedList
 let linkedList = LinkedList<Int>()
 linkedList.append(1)
 linkedList.append(2)
+
 print(linkedList) //[1,2]
 
 let sortedLinkedList = SortedLinkedList<Int>()
 linkedList.append(3)
 linkedList.append(1)
 linkedList.append(2)
+
 print(sortedLinkedList) //[1,2,3]
+
+```
+
+
+###Graph
+
+A graph can be constructed from a array literal, or a dependency list.
+Operations like *BFS* and *DFS* visit, *shortestPath* and *topologicalSort* are available to the user.
+
+
+```swift
+import DataStructures
 
 //Graph (graphs can be directed/undirected and weighted/not weighted)
 let graph = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
@@ -101,6 +120,13 @@ g.populateFromDependencyList(noCycle)
 
 g.isDirectedAcyclic() //true
 g.topologicalSort() // ["A", "B", "D", "C", "E", "F"]
+ 
+
+```
+
+
+```swift
+
  
 //Stacks and Queues are implemented through Array and LinkedList extension
 
