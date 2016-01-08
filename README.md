@@ -95,6 +95,7 @@ graph.addEdge(g[1], to: g[5])
 graph.addEdge(g[2], to: g[4])
 graph.addEdge(g[4], to: g[5])
 graph.addEdge(g[5], to: g[6])
+        
 
 //bfs visit expected [1, 2, 3, 5, 4, 6]
 let bfs = g.traverseBreadthFirst().map() { return $0.value }
@@ -111,6 +112,15 @@ g.addEdge(g[1], to: g[5], weight: 6)
 g.addEdge(g[2], to: g[4], weight: 1)
 g.addEdge(g[4], to: g[5], weight: 1)
 g.addEdge(g[5], to: g[6], weight: 10)
+
+//..or you can use the shorthand subscript to create an edge
+ graph[1,2] = 2
+ graph[1,3] = 3
+ graph[1,5] = 6
+ graph[2,4] = 1
+ graph[4,5] = 1
+ graph[5,6] = 10
+
 
 //shortest path from 1 to 5, expected [1, 2, 4, 5] with cost 4
 let p = g.shortestPath(g[1], to: g[5])

@@ -14,10 +14,10 @@ private struct Edge<T:Equatable>: Equatable {
     private var vertices: (from:Vertex<T>, to:Vertex<T>)
     
     ///The wight for this edge
-    private let weight: Int
+    private let weight: Double
     
     ///Creates a new edge
-    private init(from: Vertex<T>, to: Vertex<T>, weight: Int = 1) {
+    private init(from: Vertex<T>, to: Vertex<T>, weight: Double = 1) {
         self.vertices = (from, to)
         self.weight = weight
     }
@@ -88,6 +88,27 @@ public struct Graph<T:Equatable>: ArrayLiteralConvertible {
         return vertices.filter() { $0.value == index }.first!
     }
     
+    public subscript(from: T, to:T) -> Double {
+        
+        get {
+            guard let fromVertex: Vertex<T> = self[from],
+                  let toVertex: Vertex<T> = self[to] else { return Double.infinity }
+            
+            guard let edge = fromVertex.edges.filter({ return $0.vertices.to == toVertex}).first else { return Double.infinity }
+            
+            return edge.weight
+        }
+        
+        set (weight) {
+            guard let fromVertex: Vertex<T> = self[from],
+                  let toVertex: Vertex<T> = self[to] else { return }
+            
+            //creates a edge
+            self.addEdge(fromVertex, to: toVertex, weight: weight)
+        }
+    }
+    
+    
     /// Create a new instance of the graph
     public init(directed: Bool = false, weighted: Bool = false) {
         self.directed = directed
@@ -124,7 +145,7 @@ public struct Graph<T:Equatable>: ArrayLiteralConvertible {
     }
     
     ///Creates an edge from/to the vertices passed as argument
-    public func addEdge(from: Vertex<T>, to: Vertex<T>, weight: Int = 1) {
+    public func addEdge(from: Vertex<T>, to: Vertex<T>, weight: Double = 1) {
         
         let edge = Edge(from: from, to: to, weight: weight)
         from.edges.append(edge)
@@ -276,7 +297,7 @@ public struct GraphGenerator<T:Equatable>: GeneratorType {
 public struct Path<T:Equatable>: Equatable {
     
     ///The cost and the previous cost
-    public let cost: Int
+    public let cost: Double
     
     ///All the vertices included in the path
     public let vertices: [Vertex<T>]
@@ -286,13 +307,13 @@ public struct Path<T:Equatable>: Equatable {
         return self.vertices.last
     }
     
-    private init(cost: Int, vertices: [Vertex<T>] = [Vertex<T>]()) {
+    private init(cost: Double, vertices: [Vertex<T>] = [Vertex<T>]()) {
         self.cost = cost
         self.vertices = vertices
     }
     
     ///Creates a new path to the vertex passed as argument and with the additional cost
-    private func appendNew(increment: Int, to:Vertex<T>) -> Path<T> {
+    private func appendNew(increment: Double, to:Vertex<T>) -> Path<T> {
         var v = self.vertices
         v.append(to)
         return Path(cost: self.cost + increment, vertices: v)
@@ -311,7 +332,7 @@ public func ==<T>(lhs: Path<T>, rhs: Path<T>) -> Bool {
     return lhs.cost == rhs.cost && lhs.vertices == rhs.vertices
 }
 
-private func +<T>(lhs: Path<T>, rhs:(Int,Vertex<T>)) -> Path<T> {
+private func +<T>(lhs: Path<T>, rhs:(Double,Vertex<T>)) -> Path<T> {
     return lhs.appendNew(rhs.0, to: rhs.1)
 }
 
@@ -354,7 +375,7 @@ extension Graph {
             
         }
         
-        var shortestPath = Path<T>(cost: Int.max)
+        var shortestPath = Path<T>(cost: Double.infinity)
         
         for path in final {
             if path.destination == to && path.cost < shortestPath.cost {

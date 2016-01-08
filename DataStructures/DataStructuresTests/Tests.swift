@@ -46,6 +46,24 @@ class GraphTest: XCTestCase {
         XCTAssert((p?.vertices.map(){ return $0.value})! == [1,2,4,5])
     }
     
+    func testShortestPathSubscript() {
+        var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
+        g.directed = true
+        g.weighted = true
+    
+        g[1,2] = 2
+        g[1,3] = 3
+        g[1,5] = 6
+        g[2,4] = 1
+        g[4,5] = 1
+        g[5,6] = 10
+        
+        //shortest path from 1 to 5, expected [1, 2, 4, 5] with cost 4
+        let p = g.shortestPath(g[1], to: g[5])
+        XCTAssert(p?.cost == 4)
+        XCTAssert((p?.vertices.map(){ return $0.value})! == [1,2,4,5])
+    }
+    
     func testDfs() {
         var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
         g.directed = false
