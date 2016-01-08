@@ -17,6 +17,9 @@ For the time being the available data structures are:
 - PriorityQueue*
 - BloomFilter*
 - Trie*
+- Multimap*
+- Bimap*
+- Bag
 - RedBlackTree
 
 ## Installation
@@ -200,9 +203,9 @@ Note that this implementation is not synchronized, it must be synchronized exter
 import DataStructures
 
 var trie = Trie()
-trie.insert("Apple")
-trie.insert("App Store")
-trie.findPrefix("App") // ["App Store", "Apple"]
+trie.insert("A")
+trie.insert("AB")
+trie.findPrefix("A") // ["A", "AB"]
 
 ```
 ###RedBlackTree
@@ -223,6 +226,61 @@ import DataStructures
 
 ```
 
+###Multimap
+
+A generalization of a map or associative array data type in which more than one value may be associated with and returned for a given key.
+Note that this implementation is not synchronized, it must be synchronized externally.
+
+
+```swift
+
+import DataStructures
+
+var multimap = Multimap<String, Int>()
+multimap.insertValue(1, forKey: "a")
+multimap.insertValue(5, forKey: "a")
+multimap["a"] // [1, 5]
+
+```
+
+###Bimap
+
+A generalization of a map or associative array data type in which more than one value may be associated with and returned for a given key.
+Note that this implementation is not synchronized, it must be synchronized externally.
+
+
+```swift
+
+import DataStructures
+
+var bimap = Bimap<String, Int>()
+bimap[key: "a"] = 1
+bimap[value: 3] = "b"
+bimap[value: 1] // "a"
+bimap[key: "b"] // 3
+
+```
+
+###Bag
+
+Similar to a set but allows repeated ("equal") values (duplicates). This is used in two distinct senses: either equal values are considered identical, and are simply counted, or equal values are considered equivalent, and are stored as distinct items. 
+
+```swift
+
+import DataStructures
+
+var bag = Bag<String>()
+bag.insert("a")
+bag.insert("b")
+bag.insert("a")
+bag.distinctCount // 2
+bag.count("a") // 2
+
+```
+
+
+
+
 ## Credits
-\* Currently the PriorityQueue and the BloomFilter data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
+\* The PriorityQueue,Multimap,Bimap and BloomFilter data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
 The RedBlackTree datastructure is adapted from [SwiftDataStructures](https://github.com/oisdk/SwiftDataStructures) 

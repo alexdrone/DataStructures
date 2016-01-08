@@ -13,6 +13,9 @@
 		160C1D5D1C32EAD800CF2916 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D5C1C32EAD800CF2916 /* BitArray.swift */; };
 		160C1D5F1C353D4000CF2916 /* RedBlackTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */; };
 		160C1D621C3563B400CF2916 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D611C3563B400CF2916 /* Trie.swift */; };
+		1640AA891C403DFC004F7205 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640AA881C403DFC004F7205 /* Multimap.swift */; };
+		1640AA8B1C403FE0004F7205 /* Bimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640AA8A1C403FE0004F7205 /* Bimap.swift */; };
+		1640AA8D1C40408E004F7205 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640AA8C1C40408E004F7205 /* Bag.swift */; };
 		1644D68E1C32A5F1000B5F7B /* DataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644D68D1C32A5F1000B5F7B /* DataStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1644D6951C32A5F1000B5F7B /* DataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1644D68A1C32A5F1000B5F7B /* DataStructures.framework */; };
 		1644D69A1C32A5F1000B5F7B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6991C32A5F1000B5F7B /* Tests.swift */; };
@@ -20,6 +23,7 @@
 		1644D6A91C32A614000B5F7B /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6A51C32A614000B5F7B /* Graph.swift */; };
 		1644D6AB1C32A614000B5F7B /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6A61C32A614000B5F7B /* LinkedList.swift */; };
 		1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */; };
+		166852C81C3A790600DD4B30 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166852C71C3A790600DD4B30 /* Matrix.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,9 @@
 		160C1D5C1C32EAD800CF2916 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitArray.swift; sourceTree = "<group>"; };
 		160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedBlackTree.swift; sourceTree = "<group>"; };
 		160C1D611C3563B400CF2916 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		1640AA881C403DFC004F7205 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multimap.swift; sourceTree = "<group>"; };
+		1640AA8A1C403FE0004F7205 /* Bimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bimap.swift; sourceTree = "<group>"; };
+		1640AA8C1C40408E004F7205 /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		1644D68A1C32A5F1000B5F7B /* DataStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1644D68D1C32A5F1000B5F7B /* DataStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStructures.h; sourceTree = "<group>"; };
 		1644D68F1C32A5F1000B5F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +56,7 @@
 		1644D6A51C32A614000B5F7B /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		1644D6A61C32A614000B5F7B /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueExtensions.swift; sourceTree = "<group>"; };
+		166852C71C3A790600DD4B30 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,10 @@
 				160C1D5C1C32EAD800CF2916 /* BitArray.swift */,
 				160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */,
 				160C1D611C3563B400CF2916 /* Trie.swift */,
+				166852C71C3A790600DD4B30 /* Matrix.swift */,
+				1640AA881C403DFC004F7205 /* Multimap.swift */,
+				1640AA8A1C403FE0004F7205 /* Bimap.swift */,
+				1640AA8C1C40408E004F7205 /* Bag.swift */,
 				1644D68F1C32A5F1000B5F7B /* Info.plist */,
 			);
 			path = DataStructures;
@@ -227,13 +239,17 @@
 			files = (
 				1644D6AB1C32A614000B5F7B /* LinkedList.swift in Sources */,
 				1644D6A91C32A614000B5F7B /* Graph.swift in Sources */,
+				1640AA8D1C40408E004F7205 /* Bag.swift in Sources */,
 				1644D6A71C32A614000B5F7B /* StackExtensions.swift in Sources */,
 				1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */,
+				1640AA8B1C403FE0004F7205 /* Bimap.swift in Sources */,
 				160C1D5B1C32EA9C00CF2916 /* BloomFilter.swift in Sources */,
+				166852C81C3A790600DD4B30 /* Matrix.swift in Sources */,
 				160C1D621C3563B400CF2916 /* Trie.swift in Sources */,
 				160C1D5F1C353D4000CF2916 /* RedBlackTree.swift in Sources */,
 				160C1D571C32E19100CF2916 /* BinaryHeap.swift in Sources */,
 				160C1D591C32E2A400CF2916 /* PriorityQueue.swift in Sources */,
+				1640AA891C403DFC004F7205 /* Multimap.swift in Sources */,
 				160C1D5D1C32EAD800CF2916 /* BitArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

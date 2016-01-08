@@ -260,9 +260,6 @@ extension BitArray: CustomStringConvertible {
 extension BitArray: Equatable {
 }
 
-
-// MARK: BitArray Equatable Protocol Conformance
-
 /// Returns `true` if and only if the bit arrays contain the same bits in the same order.
 public func ==(lhs: BitArray, rhs: BitArray) -> Bool {
     if lhs.count != rhs.count || lhs.cardinality != rhs.cardinality {
@@ -272,7 +269,6 @@ public func ==(lhs: BitArray, rhs: BitArray) -> Bool {
 }
 
 extension BitArray: Hashable {
-    // MARK: Hashable Protocol Conformance
     
     /// The hash value.
     /// `x == y` implies `x.hashValue == y.hashValue`
@@ -285,3 +281,30 @@ extension BitArray: Hashable {
         return result
     }
 }
+
+
+//MARK: BitMask Operations
+
+public struct BitMask {
+    
+    ///Check the bit at the given index
+    public static func check(n: Int, index: Int) -> Bool {
+        return (n & (1<<index)) != 0
+    }
+    
+    ///Set the bit to 1 at the index passed as argument
+    public static func set(n: Int, index: Int) -> Int {
+        return n | (1<<index)
+    }
+    
+    ///Clear the bit passed as argument
+    public static func clear(n: Int, index: Int) -> Int {
+        let mask = ~(1<<index)
+        return n & mask
+    }
+}
+
+
+
+
+
