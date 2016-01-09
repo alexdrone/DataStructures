@@ -231,7 +231,7 @@ Note that this implementation is not synchronized, it must be synchronized exter
 ```swift
 import DataStructures
 
- let tree = RedBlackTree<Int>(arrayLiteral:[1, 3, 5, 6, 7, 8, 9])
+ var tree = RedBlackTree<Int>(arrayLiteral:[1, 3, 5, 6, 7, 8, 9])
  tree.popFirst()
 
 ```
