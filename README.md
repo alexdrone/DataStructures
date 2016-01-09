@@ -21,6 +21,7 @@ For the time being the available data structures are:
 - Bimap*
 - Bag
 - RedBlackTree
+- AVLTree
 
 ## Installation
 
