@@ -87,7 +87,7 @@ Note that this implementation is not synchronized, it must be synchronized exter
 import DataStructures
 
 //Graph (graphs can be directed/undirected and weighted/not weighted)
-let graph = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
+var graph = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
 
 graph.addEdge(graph[1], to: graph[2])
 graph.addEdge(graph[1], to: graph[3])
@@ -98,7 +98,7 @@ graph.addEdge(graph[5], to: graph[6])
         
 
 //bfs visit expected [1, 2, 3, 5, 4, 6]
-let bfs = g.traverseBreadthFirst().map() { return $0.value }
+let bfs = graph.traverseBreadthFirst().map() { return $0.value }
 
 //shortest path
 
@@ -106,12 +106,12 @@ var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
 g.directed = true
 g.weighted = true
 
-g.addEdge(graph[1], to: graph[2], weight: 2)
-g.addEdge(graph[1], to: graph[3], weight: 3)
-g.addEdge(graph[1], to: graph[5], weight: 6)
-g.addEdge(graph[2], to: graph[4], weight: 1)
-g.addEdge(graph[4], to: graph[5], weight: 1)
-g.addEdge(graph[5], to: graph[6], weight: 10)
+g.addEdge()g[1], to:g[2], weight: 2)
+g.addEdge(g[1], to:g[3], weight: 3)
+g.addEdge(g[1], to:g[5], weight: 6)
+g.addEdge(g[2], to:g[4], weight: 1)
+g.addEdge(g[4], to:g[5], weight: 1)
+g.addEdge(g[5], to:g[6], weight: 10)
 
 //..or you can use the shorthand subscript to create an edge
  graph[1,2] = 2
@@ -123,7 +123,7 @@ g.addEdge(graph[5], to: graph[6], weight: 10)
 
 
 //shortest path from 1 to 5, expected [1, 2, 4, 5] with cost 4
-let p = graph.shortestPath(g[1], to: g[5])
+let p = g.shortestPath(g[1], to: g[5])
 (p?.vertices.map(){ return $0.value} //[1,2,4,5]
 
 ///topological sort and cycle check
