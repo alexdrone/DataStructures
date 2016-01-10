@@ -51,7 +51,7 @@ public func-<T>(node: AVLTree<T>?, value : T) -> AVLTree<T>? {
 ///It doesn’t consume much memory, all standard operations (add, remove, find) are log(n) and
 ///you can iterate through the elements in ascending or descending manner. In comparison to an Array,
 ///an AVL tree is slower for addition but much faster for remove and find. The values are also always ordered.
-public struct AVLTree<T: Comparable> {
+public class AVLTree<T: Comparable> {
     public typealias Element = T
     
     public let left : AVLTree<Element>?
@@ -63,7 +63,7 @@ public struct AVLTree<T: Comparable> {
     
     public let value : Element!
     
-    public init(_ value : Element){
+    public convenience init(_ value : Element){
         self.init(value: value, left: nil, right: nil)
     }
     
@@ -232,5 +232,49 @@ extension AVLTree : CustomStringConvertible {
     public var description : String {
         let empty = "_"
         return "(\(value) \(left?.description || empty) \(right?.description || empty))"
+    }
+}
+
+extension AVLTree : SequenceType {
+    
+     ///Runs a `RedBlackTreeGenerator` over the elements of `self`. (The elements are presented in
+     ///order, from smallest to largest)
+    public func generate() -> AVLTreeGenerator<Element> {
+        return AVLTreeGenerator(stack: [], curr: self)
+    }
+}
+
+///A `Generator` for a AVLTree
+public struct AVLTreeGenerator<Element : Comparable> : GeneratorType {
+    
+    private var (stack, curr): ([AVLTree<Element>], AVLTree<Element>)
+    
+     ///Advance to the next element and return it, or return `nil` if no next element exists.
+    public mutating func next() -> Element? {
+        
+        if curr.left == nil {
+            if let right = curr.right {
+                let value = curr.value
+                curr = right
+                return value
+            }
+        } else {
+            stack.append(curr)
+            if let left = curr.left {
+                curr = left
+            }
+        }
+        
+        guard let node = stack.popLast() else {
+            return nil
+        }
+        
+        if let right = node.right {
+            let value = node.value
+            curr = right
+            return value
+        }
+        
+        return nil
     }
 }
