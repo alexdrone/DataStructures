@@ -57,8 +57,6 @@ All of the operations perform as could be expected for a doubly-linked list. Ope
 Note that this implementation is not synchronized. If multiple threads access a linked list concurrently, and at least one of the threads modifies the list structurally, it must be synchronized externally.
 
 ```swift
-import DataStructures
-
 let linkedList = LinkedList<Int>()
 linkedList.append(1)
 linkedList.append(2)
@@ -82,8 +80,6 @@ Operations like *BFS* and *DFS* visit, *shortestPath* and *topologicalSort* are 
 Note that this implementation is not synchronized, it must be synchronized externally.
 
 ```swift
-import DataStructures
-
 //Graph (graphs can be directed/undirected and weighted/not weighted)
 var graph = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
 
@@ -174,8 +170,6 @@ The head of this queue is the least element with respect to the specified orderi
 Note that this implementation is not synchronized. Multiple threads should not access a PriorityQueue instance concurrently if any of the threads modifies the queue
 
 ```swift
-import DataStructures
-
 var pQueue = PriorityQueue<Int>(<)
 pQueue.enqueue(3)
 pQueue.enqueue(1)
@@ -189,9 +183,6 @@ pQueue.dequeue() // 1
 A Bloom filter is a space-efficient probabilistic data structure that is used to test whether an element is a member of a set. False positive matches are possible, but false negatives are not, thus a Bloom filter has a 100% recall rate. In other words, a query returns either "possibly in set" or "definitely not in set".
 
 ```swift
-
-import DataStructures
-
 var bFilter = BloomFilter<String>(expectedCount: 100)
 bFilter.insert("a")
 bFilter.contains("a") // true
@@ -203,11 +194,7 @@ bFilter.contains("a") // true
 Is an ordered tree data structure that is used to store a dynamic set or associative array where the keys are strings.
 Note that this implementation is not synchronized, it must be synchronized externally.
 
-
 ```swift
-
-import DataStructures
-
 var trie = Trie()
 trie.insert("A")
 trie.insert("AB")
@@ -239,9 +226,6 @@ Note that this implementation is not synchronized, it must be synchronized exter
 
 
 ```swift
-
-import DataStructures
-
 var multimap = Multimap<String, Int>()
 multimap.insertValue(1, forKey: "a")
 multimap.insertValue(5, forKey: "a")
@@ -256,9 +240,6 @@ Note that this implementation is not synchronized, it must be synchronized exter
 
 
 ```swift
-
-import DataStructures
-
 var bimap = Bimap<String, Int>()
 bimap[key: "a"] = 1
 bimap[value: 3] = "b"
@@ -272,9 +253,6 @@ bimap[key: "b"] // 3
 Similar to a set but allows repeated ("equal") values (duplicates). This is used in two distinct senses: either equal values are considered identical, and are simply counted, or equal values are considered equivalent, and are stored as distinct items. 
 
 ```swift
-
-import DataStructures
-
 var bag = Bag<String>()
 bag.insert("a")
 bag.insert("b")
@@ -291,9 +269,6 @@ bag.count("a") // 2
 The edit distance is a way of quantifying how dissimilar two arrays are to one another by counting the minimum number of operations required to transform one array into the other
 
 ```swift
-
-import DataStructures
-
 public enum EditDistanceOperation {
     
     case Insertion(source: Int, target: Int)
@@ -308,9 +283,6 @@ public enum EditDistanceOperation {
 ###Bitmask Operations
 
 ```swift
-
-import DataStructures
-
 public struct BitMask {
     
     ///Check the bit at the given index
