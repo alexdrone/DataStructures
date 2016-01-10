@@ -48,7 +48,7 @@ About copying structs:
 
 > The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
 
-## DataStructures
+# Data Structures
 
 ###LinkedList
 
@@ -284,7 +284,7 @@ bag.count("a") // 2
 
 ```
 
-## Additions
+# Additions
 
 ###Edit Distance for Arrays
 
@@ -326,6 +326,6 @@ public struct BitMask {
 ```
 
 
-## Credits
+# Credits
 \* The PriorityQueue,Multimap,Bimap and BloomFilter data structures are forked from the excellent [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) github project. I higly suggest to check it out!
 The RedBlackTree datastructure is adapted from [SwiftDataStructures](https://github.com/oisdk/SwiftDataStructures) 
