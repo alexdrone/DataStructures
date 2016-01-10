@@ -38,7 +38,6 @@ Then add the following line to your `Cartfile`:
 
 ```
 github "alexdrone/DataStructures" "master"    
-
 ```
 
 ## Usage
@@ -49,8 +48,7 @@ About copying structs:
 
 > The behavior you see in your code will always be as if a copy took place. However, Swift only performs an actual copy behind the scenes when it is absolutely necessary to do so. Swift manages all value copying to ensure optimal performance, and you should not avoid assignment to try to preempt this optimization.
 
-## Walkthrough
-
+## DataStructures
 
 ###LinkedList
 
@@ -75,7 +73,6 @@ linkedList.append(2)
 print(sortedLinkedList) //[1,2,3]
 
 ```
-
 
 ###Graph
 
@@ -122,7 +119,6 @@ g.addEdge(g[5], to:g[6], weight: 10)
  graph[4,5] = 1
  graph[5,6] = 10
 
-
 //shortest path from 1 to 5, expected [1, 2, 4, 5] with cost 4
 let p = g.shortestPath(g[1], to: g[5])
 (p?.vertices.map(){ return $0.value} //[1,2,4,5]
@@ -135,7 +131,6 @@ g.populateFromDependencyList(noCycle)
 
 g.isDirectedAcyclic() //true
 g.topologicalSort() // ["A", "B", "D", "C", "E", "F"]
- 
 
 ```
 
@@ -289,7 +284,46 @@ bag.count("a") // 2
 
 ```
 
+## Additions
 
+###Edit Distance for Arrays
+
+The edit distance is a way of quantifying how dissimilar two arrays are to one another by counting the minimum number of operations required to transform one array into the other
+
+```swift
+
+import DataStructures
+
+public enum EditDistanceOperation {
+    
+    case Insertion(source: Int, target: Int)
+    case Removal(source: Int)
+    case Substitution(source: Int, target: Int)
+    case AllChanged
+
+    public static func compute<T:Equatable>(from: [T], to: [T]) -> [EditDistanceOperation]
+
+```
+
+###Bitmask Operations
+
+```swift
+
+import DataStructures
+
+public struct BitMask {
+    
+    ///Check the bit at the given index
+    public static func check(n: Int, index: Int) -> Bool
+    
+    ///Set the bit to 1 at the index passed as argument
+    public static func set(n: Int, index: Int) -> Int
+    
+    ///Clear the bit passed as argument
+    public static func clear(n: Int, index: Int) -> Int
+}
+
+```
 
 
 ## Credits
