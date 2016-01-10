@@ -24,6 +24,7 @@
 		1644D6A91C32A614000B5F7B /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6A51C32A614000B5F7B /* Graph.swift */; };
 		1644D6AB1C32A614000B5F7B /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6A61C32A614000B5F7B /* LinkedList.swift */; };
 		1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */; };
+		16485F2A1C4281920070C913 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16485F291C4281920070C913 /* EditDistance.swift */; };
 		166852C81C3A790600DD4B30 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166852C71C3A790600DD4B30 /* Matrix.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		1644D6A51C32A614000B5F7B /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		1644D6A61C32A614000B5F7B /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueExtensions.swift; sourceTree = "<group>"; };
+		16485F291C4281920070C913 /* EditDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistance.swift; sourceTree = "<group>"; };
 		166852C71C3A790600DD4B30 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 				1640AA881C403DFC004F7205 /* Multimap.swift */,
 				1640AA8A1C403FE0004F7205 /* Bimap.swift */,
 				1640AA8C1C40408E004F7205 /* Bag.swift */,
+				16485F291C4281920070C913 /* EditDistance.swift */,
 				1644D68F1C32A5F1000B5F7B /* Info.plist */,
 			);
 			path = DataStructures;
@@ -255,6 +258,7 @@
 				160C1D591C32E2A400CF2916 /* PriorityQueue.swift in Sources */,
 				1640AA891C403DFC004F7205 /* Multimap.swift in Sources */,
 				160C1D5D1C32EAD800CF2916 /* BitArray.swift in Sources */,
+				16485F2A1C4281920070C913 /* EditDistance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

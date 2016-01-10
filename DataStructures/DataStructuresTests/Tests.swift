@@ -12,7 +12,6 @@ import XCTest
 class GraphTest: XCTestCase {
     
     func testBreadthFirst() {
-     
         let g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
         g.addEdge(g[1], to: g[2])
         g.addEdge(g[1], to: g[3])
@@ -25,14 +24,12 @@ class GraphTest: XCTestCase {
         let bfs = g.traverseBreadthFirst().map() { return $0.value }
         XCTAssert(bfs.count == 6)
         XCTAssert(bfs == [1,2,3,5,4,6])
-        
     }
     
     func testShortestPath() {
         var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
         g.directed = true
         g.weighted = true
-        
         g.addEdge(g[1], to: g[2], weight: 2)
         g.addEdge(g[1], to: g[3], weight: 3)
         g.addEdge(g[1], to: g[5], weight: 6)
@@ -50,7 +47,6 @@ class GraphTest: XCTestCase {
         var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
         g.directed = true
         g.weighted = true
-    
         g[1,2] = 2
         g[1,3] = 3
         g[1,5] = 6
@@ -67,7 +63,6 @@ class GraphTest: XCTestCase {
     func testDfs() {
         var g = Graph<Int>(arrayLiteral: 1,7,4,3,5,2,6)
         g.directed = false
-        
         g.addEdge(g[1], to: g[2], weight: 2)
         g.addEdge(g[1], to: g[3], weight: 3)
         g.addEdge(g[1], to: g[5], weight: 6)
@@ -76,75 +71,54 @@ class GraphTest: XCTestCase {
         g.addEdge(g[5], to: g[6], weight: 10)
     }
     
-    let noCycle: Dictionary<String, [String]> = [
-        "A": [],  "B": [],  "C": ["D"], "D": ["A"], "E": ["C", "B"],  "F": ["E"]
-    ]
-    
-    let cycle: Dictionary<String, [String]> = [
-        "A": [],  "B": ["F"],  "C": ["D"],   "D": ["A"],  "E": ["C", "B"],  "F": ["E"],
-    ]
-    
+    let noCycle: Dictionary<String, [String]> = ["A":[],"B":[],"C":["D"],"D":["A"],"E":["C","B"],"F":["E"]]
+    let cycle: Dictionary<String, [String]> = ["A":[],"B":["F"],"C":["D"],"D":["A"],"E":["C","B"],"F":["E"],]
     let noCycleResult = ["A", "B", "D", "C", "E", "F"]
 
     func testTopoSort() {
-        
         XCTAssert(try! topoSort(noCycle) == noCycleResult)
-        
         do {
             try topoSort(cycle)
             XCTAssert(false)
-
         } catch {
             XCTAssert(true)
         }
     }
     
     func testTopologicalSort() {
-        
         var g = Graph<String>(directed: true, weighted: false)
         g.populateFromDependencyList(noCycle)
-
         XCTAssert(try! topoSort(g.toDependencyList()) == noCycleResult)
         XCTAssert(g.isDirectedAcyclic() == true)
-        
         g = Graph<String>(directed: true, weighted: false)
         g.populateFromDependencyList(cycle)
         XCTAssert(g.isDirectedAcyclic() == false)
-
         do {
             try topoSort(g.toDependencyList())
             XCTAssert(false)
-            
         } catch {
             XCTAssert(true)
         }
-        
     }
 }
 
 class LinkedListTest: XCTestCase {
     
     func testInsertions() {
-        
         let linkedList = LinkedList<Int>()
         XCTAssert(linkedList.count == 0)
-        
         linkedList.append(1)
         XCTAssert(linkedList[0] == 1)
         XCTAssert(linkedList.count == 1)
-        
         linkedList.append(2)
         XCTAssert(linkedList[1] == 2)
         XCTAssert(linkedList.count == 2)
-        
         linkedList.append(3)
         XCTAssert(linkedList[2] == 3)
         XCTAssert(linkedList.count == 3)
-        
         linkedList.append(4)
         XCTAssert(linkedList[3] == 4)
         XCTAssert(linkedList.count == 4)
-        
         linkedList.append(5)
         XCTAssert(linkedList[4] == 5)
         XCTAssert(linkedList.count == 5)
@@ -153,42 +127,135 @@ class LinkedListTest: XCTestCase {
     let numberOfTries = 100
     
     func testLinkedListPerformance() {
-        
         measureBlock { () -> Void in
             let l = LinkedList<Int>()
             for i in 1...self.numberOfTries { l.append(i) }
             let _ = l.reduce(0, combine: { return $0 + $1 })
-            
             for i in 1...self.numberOfTries {
                 if i%10 == 0 { XCTAssert(l.contains(i)) }
             }
-            
             for i in 1...self.numberOfTries {
                 if i % 2 == 0 { l.removeFirst() }
                 else { l.removeLast() }
             }
-            
             XCTAssert(l.count == 0)
         }
     }
     
     func testArrayPerformance() {
-        
         measureBlock { () -> Void in
             var l = Array<Int>()
             for i in 1...self.numberOfTries { l.append(i) }
             let _ = l.reduce(0, combine: { return $0 + $1 })
-            
             for i in 1...self.numberOfTries {
                 if i%10 == 0 { XCTAssert(l.contains(i)) }
             }
-            
             for i in 1...self.numberOfTries {
                 if i % 2 == 0 { l.removeFirst() }
                 else { l.removeLast() }
             }
-            
             XCTAssert(l.count == 0)
+        }
+    }
+}
+
+class EditDistanceTests: XCTestCase {
+    
+    func testLevenshteinOperation() {
+        
+        var operations = EditDistanceOperation.compute([1], to: [1])
+        XCTAssert(operations.count == 0)
+        
+        //insertion
+        operations = EditDistanceOperation.compute([1], to: [1,2])
+        XCTAssert(operations.count == 1)
+        
+        switch (operations[0]) {
+        case .Insertion(let source, let target):
+            XCTAssert(source == 1)
+            XCTAssert(target == 1)
+            
+        default: XCTAssert(false)
+        }
+        
+        operations = EditDistanceOperation.compute([1,2], to: [1,3,2])
+        XCTAssert(operations.count == 1)
+        
+        switch (operations[0]) {
+        case .Insertion(let source, let target):
+            XCTAssert(source == 1)
+            XCTAssert(target == 1)
+            
+        default: XCTAssert(false)
+        }
+        
+        //removal
+        operations = EditDistanceOperation.compute([1,2], to: [2])
+        XCTAssert(operations.count == 1)
+        
+        switch (operations[0]) {
+        case .Removal(let source):
+            XCTAssert(source == 0)
+            
+        default: XCTAssert(false)
+        }
+        
+        operations = EditDistanceOperation.compute([1,2,3], to: [1])
+        XCTAssert(operations.count == 2)
+        
+        switch (operations[0]) {
+        case .Removal(let source):
+            XCTAssert(source == 2)
+            
+        default: XCTAssert(false)
+        }
+        
+        switch (operations[1]) {
+        case .Removal(let source):
+            XCTAssert(source == 1)
+        default: XCTAssert(false)
+        }
+        
+        //substitution
+        operations = EditDistanceOperation.compute([1,2,3], to: [1,4,5])
+        XCTAssert(operations.count == 2)
+        
+        switch (operations[0]) {
+        case .Substitution(let source, let target):
+            XCTAssert(source == 2)
+            XCTAssert(target == 2)
+        default: XCTAssert(false)
+        }
+        
+        switch (operations[1]) {
+        case .Substitution(let source, let target):
+            XCTAssert(source == 1)
+            XCTAssert(target == 1)
+        default: XCTAssert(false)
+        }
+        
+        //substitution && removal
+        operations = EditDistanceOperation.compute([1,2,3], to: [4,5])
+        XCTAssert(operations.count == 3)
+        
+        switch (operations[0]) {
+        case .Substitution(let source, let target):
+            XCTAssert(source == 2)
+            XCTAssert(target == 1)
+        default: XCTAssert(false)
+        }
+        
+        switch (operations[1]) {
+        case .Substitution(let source, let target):
+            XCTAssert(source == 1)
+            XCTAssert(target == 0)
+        default: XCTAssert(false)
+        }
+        
+        switch (operations[2]) {
+        case .Removal(let source):
+            XCTAssert(source == 0)
+        default: XCTAssert(false)
         }
     }
 }
