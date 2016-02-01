@@ -13,6 +13,7 @@
 		160C1D5D1C32EAD800CF2916 /* BitArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D5C1C32EAD800CF2916 /* BitArray.swift */; };
 		160C1D5F1C353D4000CF2916 /* RedBlackTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */; };
 		160C1D621C3563B400CF2916 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160C1D611C3563B400CF2916 /* Trie.swift */; };
+		16257F331C564D1A009DBD20 /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16257F321C564D1A009DBD20 /* BinarySearchTree.swift */; };
 		1640AA891C403DFC004F7205 /* Multimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640AA881C403DFC004F7205 /* Multimap.swift */; };
 		1640AA8B1C403FE0004F7205 /* Bimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640AA8A1C403FE0004F7205 /* Bimap.swift */; };
 		1640AA8D1C40408E004F7205 /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640AA8C1C40408E004F7205 /* Bag.swift */; };
@@ -26,6 +27,7 @@
 		1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */; };
 		16485F2A1C4281920070C913 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16485F291C4281920070C913 /* EditDistance.swift */; };
 		166852C81C3A790600DD4B30 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166852C71C3A790600DD4B30 /* Matrix.swift */; };
+		1669C8F31C5FFA6E0033AFA5 /* Combinatorics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1669C8F21C5FFA6E0033AFA5 /* Combinatorics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,7 @@
 		160C1D5C1C32EAD800CF2916 /* BitArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitArray.swift; sourceTree = "<group>"; };
 		160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedBlackTree.swift; sourceTree = "<group>"; };
 		160C1D611C3563B400CF2916 /* Trie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		16257F321C564D1A009DBD20 /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
 		1640AA881C403DFC004F7205 /* Multimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multimap.swift; sourceTree = "<group>"; };
 		1640AA8A1C403FE0004F7205 /* Bimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bimap.swift; sourceTree = "<group>"; };
 		1640AA8C1C40408E004F7205 /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueExtensions.swift; sourceTree = "<group>"; };
 		16485F291C4281920070C913 /* EditDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistance.swift; sourceTree = "<group>"; };
 		166852C71C3A790600DD4B30 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		1669C8F21C5FFA6E0033AFA5 /* Combinatorics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinatorics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,23 +107,25 @@
 		1644D68C1C32A5F1000B5F7B /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
-				1644D6A41C32A614000B5F7B /* StackExtensions.swift */,
-				1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */,
-				1644D6A51C32A614000B5F7B /* Graph.swift */,
-				1644D6A61C32A614000B5F7B /* LinkedList.swift */,
 				1644D68D1C32A5F1000B5F7B /* DataStructures.h */,
-				160C1D561C32E19100CF2916 /* BinaryHeap.swift */,
+				1644D6A61C32A614000B5F7B /* LinkedList.swift */,
+				1644D6A51C32A614000B5F7B /* Graph.swift */,
 				160C1D581C32E2A400CF2916 /* PriorityQueue.swift */,
+				160C1D561C32E19100CF2916 /* BinaryHeap.swift */,
 				160C1D5A1C32EA9C00CF2916 /* BloomFilter.swift */,
 				160C1D5C1C32EAD800CF2916 /* BitArray.swift */,
-				160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */,
-				1640AA8E1C40FF54004F7205 /* AVLTree.swift */,
-				160C1D611C3563B400CF2916 /* Trie.swift */,
 				166852C71C3A790600DD4B30 /* Matrix.swift */,
 				1640AA881C403DFC004F7205 /* Multimap.swift */,
 				1640AA8A1C403FE0004F7205 /* Bimap.swift */,
 				1640AA8C1C40408E004F7205 /* Bag.swift */,
+				160C1D611C3563B400CF2916 /* Trie.swift */,
+				160C1D5E1C353D4000CF2916 /* RedBlackTree.swift */,
+				16257F321C564D1A009DBD20 /* BinarySearchTree.swift */,
+				1640AA8E1C40FF54004F7205 /* AVLTree.swift */,
+				1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */,
+				1644D6A41C32A614000B5F7B /* StackExtensions.swift */,
 				16485F291C4281920070C913 /* EditDistance.swift */,
+				1669C8F21C5FFA6E0033AFA5 /* Combinatorics.swift */,
 				1644D68F1C32A5F1000B5F7B /* Info.plist */,
 			);
 			path = DataStructures;
@@ -243,12 +249,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16257F331C564D1A009DBD20 /* BinarySearchTree.swift in Sources */,
 				1644D6AB1C32A614000B5F7B /* LinkedList.swift in Sources */,
 				1644D6A91C32A614000B5F7B /* Graph.swift in Sources */,
 				1640AA8D1C40408E004F7205 /* Bag.swift in Sources */,
 				1644D6A71C32A614000B5F7B /* StackExtensions.swift in Sources */,
 				1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */,
 				1640AA8B1C403FE0004F7205 /* Bimap.swift in Sources */,
+				1669C8F31C5FFA6E0033AFA5 /* Combinatorics.swift in Sources */,
 				160C1D5B1C32EA9C00CF2916 /* BloomFilter.swift in Sources */,
 				166852C81C3A790600DD4B30 /* Matrix.swift in Sources */,
 				160C1D621C3563B400CF2916 /* Trie.swift in Sources */,

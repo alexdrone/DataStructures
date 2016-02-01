@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites tests='75' failures='0'>
+  <testsuite name='Tests.BloomFilterTests' tests='4' failures='0'>
+    <testcase classname='Tests.BloomFilterTests' name='testEmptyBloomFilter' time='0.014'/>
+    <testcase classname='Tests.BloomFilterTests' name='testInsert' time='0.003'/>
+    <testcase classname='Tests.BloomFilterTests' name='testRemoveAll' time='0.001'/>
+    <testcase classname='Tests.BloomFilterTests' name='testRoughCount' time='0.001'/>
+  </testsuite>
+  <testsuite name='Tests.EditDistanceTests' tests='1' failures='0'>
+    <testcase classname='Tests.EditDistanceTests' name='testLevenshteinOperation' time='0.002'/>
+  </testsuite>
+  <testsuite name='Tests.GraphTest' tests='6' failures='0'>
+    <testcase classname='Tests.GraphTest' name='testBreadthFirst' time='0.011'/>
+    <testcase classname='Tests.GraphTest' name='testDfs' time='0.001'/>
+    <testcase classname='Tests.GraphTest' name='testShortestPath' time='0.005'/>
+    <testcase classname='Tests.GraphTest' name='testShortestPathSubscript' time='0.001'/>
+    <testcase classname='Tests.GraphTest' name='testTopologicalSort' time='0.005'/>
+    <testcase classname='Tests.GraphTest' name='testTopoSort' time='0.002'/>
+  </testsuite>
+  <testsuite name='Tests.LinkedListTest' tests='3' failures='0'>
+    <testcase classname='Tests.LinkedListTest' name='testArrayPerformance' time='0.377'/>
+    <testcase classname='Tests.LinkedListTest' name='testInsertions' time='0.001'/>
+    <testcase classname='Tests.LinkedListTest' name='testLinkedListPerformance' time='0.352'/>
+  </testsuite>
+  <testsuite name='Tests.MultimapTests' tests='15' failures='0'>
+    <testcase classname='Tests.MultimapTests' name='testContainsKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testContainsValueForKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testDictionaryLiteralConvertibleConformance' time='0.002'/>
+    <testcase classname='Tests.MultimapTests' name='testEmptyMultimap' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testEquatableConformance' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testInitWithDictionary' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testInsertValueForKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testInsertValuesForKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testRemoveAll' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testRemoveValueForKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testRemoveValuesForKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testReplaceValuesForKey' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testSequenceTypeConformance' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testSubscript' time='0.001'/>
+    <testcase classname='Tests.MultimapTests' name='testValuesForKey' time='0.000'/>
+  </testsuite>
+  <testsuite name='Tests.PriorityQueueTests' tests='8' failures='0'>
+    <testcase classname='Tests.PriorityQueueTests' name='testConsecutiveEnqueues' time='0.002'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testEmptyDequeue' time='0.001'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testEmptyQueue' time='0.000'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testEqual' time='0.000'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testInitWithArray' time='0.001'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testRemoveAll' time='0.001'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testSequenceTypeConformance' time='0.001'/>
+    <testcase classname='Tests.PriorityQueueTests' name='testSingleEnqueue' time='0.001'/>
+  </testsuite>
+  <testsuite name='Tests.RedBlackTreeTests' tests='24' failures='0'>
+    <testcase classname='Tests.RedBlackTreeTests' name='testArrayLiteralInit' time='0.016'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testContains' time='0.005'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testCount' time='0.009'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testDebugDescription' time='0.003'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testDisjoint' time='0.001'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testEmptyInit' time='0.001'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testExclusiveOr' time='0.003'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testExclusiveOrInPlace' time='0.003'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testFirst' time='0.002'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testIntersect' time='0.002'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testIsEmpty' time='0.001'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testLast' time='0.001'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testRemove' time='0.033'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testRemoveMax' time='0.007'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testRemoveMin' time='0.005'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testReverse' time='0.002'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testSeqInit' time='0.002'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testSeqType' time='0.203'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testSubset' time='0.003'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testSubtract' time='0.002'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testSubtractInPlace' time='0.003'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testSuperset' time='0.002'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testUnion' time='0.003'/>
+    <testcase classname='Tests.RedBlackTreeTests' name='testUnionInPlace' time='0.003'/>
+  </testsuite>
+  <testsuite name='Tests.TrieTests' tests='14' failures='0'>
+    <testcase classname='Tests.TrieTests' name='testContiansEmptyPrefix' time='0.003'/>
+    <testcase classname='Tests.TrieTests' name='testContiansInvalidPrefix' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testContiansValidPrefix' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testEmptyContains' time='0.000'/>
+    <testcase classname='Tests.TrieTests' name='testEmptyTrie' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testfindPrefix' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testHashableConformance' time='0.002'/>
+    <testcase classname='Tests.TrieTests' name='testInitWithArray' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testInsert' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testlongestPrefixIn' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testNonEmptyContains' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testRemove' time='0.003'/>
+    <testcase classname='Tests.TrieTests' name='testRemoveAll' time='0.001'/>
+    <testcase classname='Tests.TrieTests' name='testRemoveFromEmptyTrie' time='0.001'/>
+  </testsuite>
+</testsuites>

@@ -20,6 +20,7 @@ For the time being the available data structures are:
 - Multimap*
 - Bimap*
 - Bag
+- BinarySearchTree
 - RedBlackTree
 - AVLTree
 
