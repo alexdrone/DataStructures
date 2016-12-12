@@ -27,7 +27,6 @@
 		1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */; };
 		16485F2A1C4281920070C913 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16485F291C4281920070C913 /* EditDistance.swift */; };
 		166852C81C3A790600DD4B30 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166852C71C3A790600DD4B30 /* Matrix.swift */; };
-		1669C8F31C5FFA6E0033AFA5 /* Combinatorics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1669C8F21C5FFA6E0033AFA5 /* Combinatorics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +63,6 @@
 		1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueExtensions.swift; sourceTree = "<group>"; };
 		16485F291C4281920070C913 /* EditDistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDistance.swift; sourceTree = "<group>"; };
 		166852C71C3A790600DD4B30 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		1669C8F21C5FFA6E0033AFA5 /* Combinatorics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinatorics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +123,6 @@
 				1644D6AD1C32A633000B5F7B /* QueueExtensions.swift */,
 				1644D6A41C32A614000B5F7B /* StackExtensions.swift */,
 				16485F291C4281920070C913 /* EditDistance.swift */,
-				1669C8F21C5FFA6E0033AFA5 /* Combinatorics.swift */,
 				1644D68F1C32A5F1000B5F7B /* Info.plist */,
 			);
 			path = DataStructures;
@@ -203,9 +200,11 @@
 				TargetAttributes = {
 					1644D6891C32A5F1000B5F7B = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					1644D6931C32A5F1000B5F7B = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -256,7 +255,6 @@
 				1644D6A71C32A614000B5F7B /* StackExtensions.swift in Sources */,
 				1644D6AE1C32A633000B5F7B /* QueueExtensions.swift in Sources */,
 				1640AA8B1C403FE0004F7205 /* Bimap.swift in Sources */,
-				1669C8F31C5FFA6E0033AFA5 /* Combinatorics.swift in Sources */,
 				160C1D5B1C32EA9C00CF2916 /* BloomFilter.swift in Sources */,
 				166852C81C3A790600DD4B30 /* Matrix.swift in Sources */,
 				160C1D621C3563B400CF2916 /* Trie.swift in Sources */,
@@ -393,6 +391,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -410,6 +409,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.DataStructures;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -420,6 +420,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.DataStructuresTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -430,6 +431,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.au.DataStructuresTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

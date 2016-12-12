@@ -1,11 +1,26 @@
 //
-//  PriorityQueue.swift
-//  DataStructures
+// The MIT License (MIT)
 //
-//  Created by Alex Usbergo on 29/12/15.
-//  Copyright © 2015 Alex Usbergo. All rights reserved.
-//  Forked from https://github.com/mauriciosantos/Buckets-Swift
 //
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+// Forked from mauriciosantos/Buckets-Swift/
 
 import Foundation
 
@@ -13,96 +28,114 @@ import Foundation
 /// elements are dequeued in highest-priority-first order (the
 /// elements with the highest priority are dequeued first).
 /// The `enqueue` and `dequeue` operations run in O(log(n)) time.
+/// Conforms to `Sequence`, `CustomStringConvertible`.
 public struct PriorityQueue<T> {
-        
-    /// Constructs an empty priority queue using a closure to
-    /// determine the order of a provided pair of elements. The closure that you supply for
-    /// `isOrderedBefore` should return a boolean value to indicate whether one element
-    /// should be before (`true`) or after (`false`) another element using strict weak ordering.
-    /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
-    ///
-    /// - parameter isOrderedBefore: Strict weak ordering function for checking if the first element has higher priority.
-    public init(_ isOrderedBefore: (T,T) -> Bool) {
-        self.init([], isOrderedBefore)
+
+  /// Constructs an empty priority queue using a closure to
+  /// determine the order of a provided pair of elements. The closure that you supply for
+  /// `sortedBy` should return a boolean value to indicate whether one element
+  /// should be before (`true`) or after (`false`) another element using strict weak ordering.
+  /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
+  ///
+  /// - parameter sortedBy: Strict weak ordering function checking if the first element
+  /// has higher priority.
+  public init(sortedBy sortFunction: @escaping (T,T) -> Bool) {
+    self.init([], sortedBy: sortFunction)
+  }
+
+  /// Constructs a priority queue from a sequence, such as an array, using a given closure to
+  /// determine the order of a provided pair of elements. The closure that you supply for
+  /// `sortedBy` should return a boolean value to indicate whether one element
+  /// should be before (`true`) or after (`false`) another element using strict weak ordering.
+  /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
+  ///
+  /// - parameter sortedBy: Strict weak ordering function for checking if the first element 
+  /// has higher priority.
+  public init<S: Sequence>(_ elements: S, sortedBy sortFunction: @escaping (T,T) -> Bool)
+      where S.Iterator.Element == T {
+    heap = BinaryHeap<T>(compareFunction: sortFunction)
+    for e in elements {
+      enqueue(e)
     }
-    
-    /// Constructs a priority queue from a sequence, such as an array, using a given closure to
-    /// determine the order of a provided pair of elements. The closure that you supply for
-    /// `isOrderedBefore` should return a boolean value to indicate whether one element
-    /// should be before (`true`) or after (`false`) another element using strict weak ordering.
-    /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
-    ///
-    /// - parameter isOrderedBefore: Strict weak ordering function for checking if the first element has higher priority.
-    public init<S: SequenceType where S.Generator.Element == T>(_ elements: S, _ isOrderedBefore: (T,T) -> Bool) {
-        heap = BinaryHeap<T>(compareFunction: isOrderedBefore)
-        for e in elements {
-            enqueue(e)
-        }
-    }
-    
-    /// Number of elements stored in the priority queue.
-    public var count: Int {
-        return heap.count
-    }
-    
-    /// Returns `true` if and only if `count == 0`.
-    public var isEmpty: Bool {
-        return count == 0
-    }
-    
-    /// The highest priority element in the queue, or `nil` if the queue is empty.
-    public var first: T? {
-        return heap.max
-    }
-    
-    /// Inserts an element into the priority queue.
-    public mutating func enqueue(element: T) {
-        heap.insert(element)
-    }
-    
-    /// Retrieves and removes the highest priority element of the queue.
-    /// - returns: The highest priority element, or `nil` if the queue is empty.
-    public mutating func dequeue() -> T? {
-        return heap.removeMax()
-    }
-    
-    /// Removes all the elements from the priority queue, and by default
-    /// clears the underlying storage buffer.
-    public mutating func removeAll(keepCapacity keep: Bool = true)  {
-        heap.removeAll(keepCapacity: keep)
-    }
-    
-    /// Internal structure holding the elements.
-    private var heap : BinaryHeap<T>
+  }
+
+  // MARK: Querying a Priority Queue
+
+  /// Number of elements stored in the priority queue.
+  public var count: Int {
+    return heap.count
+  }
+
+  /// Returns `true` if and only if `count == 0`.
+  public var isEmpty: Bool {
+    return count == 0
+  }
+
+  /// The highest priority element in the queue, or `nil` if the queue is empty.
+  public var first: T? {
+    return heap.max
+  }
+
+  // MARK: Adding and Removing Elements
+
+  /// Inserts an element into the priority queue.
+  public mutating func enqueue(_ element: T) {
+    heap.insert(element)
+  }
+
+  /// Retrieves and removes the highest priority element of the queue.
+  /// - returns: The highest priority element, or `nil` if the queue is empty.
+  @discardableResult
+  public mutating func dequeue() -> T {
+    precondition(!isEmpty, "Queue is empty")
+    return heap.removeMax()!
+  }
+
+  /// Removes all the elements from the priority queue, and by default
+  /// clears the underlying storage buffer.
+  public mutating func removeAll(keepingCapacity keep: Bool = false)  {
+    heap.removeAll(keepingCapacity: keep)
+  }
+
+  // MARK: Private Properties and Helper Methods
+
+  /// Internal structure holding the elements.
+  fileprivate var heap : BinaryHeap<T>
 }
 
-extension PriorityQueue: SequenceType {
-    
-    /// Provides for-in loop functionality. Generates elements in no particular order.
-    public func generate() -> AnyGenerator<T> {
-        return heap.generate()
-    }
+extension PriorityQueue: Sequence {
+
+  // MARK: Sequence Protocol Conformance
+
+  /// Provides for-in loop functionality. Generates elements in no particular order.
+  /// - returns: A generator over the elements.
+  public func makeIterator() -> AnyIterator<T> {
+    return heap.makeIterator()
+  }
 }
 
 extension PriorityQueue: CustomStringConvertible {
-    
-    /// A string containing a suitable textual
-    /// representation of the priority queue.
-    public var description: String {
-        return "[" + map{"\($0)"}.joinWithSeparator(", ") + "]"
-    }
+
+  // MARK: CustomStringConvertible Protocol Conformance
+
+  /// A string containing a suitable textual
+  /// representation of the priority queue.
+  public var description: String {
+    return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
+  }
 }
 
 // MARK: - Operators
+
+// MARK: Priority Queue Operators
 
 /// Returns `true` if and only if the priority queues contain the same elements
 /// in the same order.
 /// The underlying elements must conform to the `Equatable` protocol.
 public func ==<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool {
-    return lhs.heap == rhs.heap
+  return lhs.heap == rhs.heap
 }
 
 public func !=<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool {
-    return !(lhs==rhs)
+  return !(lhs==rhs)
 }
-

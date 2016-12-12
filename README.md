@@ -1,8 +1,9 @@
 # DataStructures
 
+[![Swift](https://img.shields.io/badge/swift-3-orange.svg?style=flat)](#)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build](https://img.shields.io/badge/build-passing-green.svg?style=flat)](#)
-[![Platform](https://img.shields.io/badge/platform-ios | osx | watchos | tvos -lightgrey.svg?style=flat)](#)
+[![Platform](https://img.shields.io/badge/platform-ios | macos | watchos | tvos -lightgrey.svg?style=flat)](#)
 [![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 A collection of data structures implemented in Swift.

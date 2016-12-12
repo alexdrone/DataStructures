@@ -127,10 +127,10 @@ class LinkedListTest: XCTestCase {
     let numberOfTries = 100
     
     func testLinkedListPerformance() {
-        measureBlock { () -> Void in
+        measure { () -> Void in
             let l = LinkedList<Int>()
             for i in 1...self.numberOfTries { l.append(i) }
-            let _ = l.reduce(0, combine: { return $0 + $1 })
+            let _ = l.reduce(0, { return $0 + $1 })
             for i in 1...self.numberOfTries {
                 if i%10 == 0 { XCTAssert(l.contains(i)) }
             }
@@ -143,10 +143,10 @@ class LinkedListTest: XCTestCase {
     }
     
     func testArrayPerformance() {
-        measureBlock { () -> Void in
+        measure { () -> Void in
             var l = Array<Int>()
             for i in 1...self.numberOfTries { l.append(i) }
-            let _ = l.reduce(0, combine: { return $0 + $1 })
+            let _ = l.reduce(0, { return $0 + $1 })
             for i in 1...self.numberOfTries {
                 if i%10 == 0 { XCTAssert(l.contains(i)) }
             }
@@ -171,7 +171,7 @@ class EditDistanceTests: XCTestCase {
         XCTAssert(operations.count == 1)
         
         switch (operations[0]) {
-        case .Insertion(let source, let target):
+        case .insertion(let source, let target):
             XCTAssert(source == 1)
             XCTAssert(target == 1)
             
@@ -182,7 +182,7 @@ class EditDistanceTests: XCTestCase {
         XCTAssert(operations.count == 1)
         
         switch (operations[0]) {
-        case .Insertion(let source, let target):
+        case .insertion(let source, let target):
             XCTAssert(source == 1)
             XCTAssert(target == 1)
             
@@ -194,7 +194,7 @@ class EditDistanceTests: XCTestCase {
         XCTAssert(operations.count == 1)
         
         switch (operations[0]) {
-        case .Removal(let source):
+        case .removal(let source):
             XCTAssert(source == 0)
             
         default: XCTAssert(false)
@@ -204,14 +204,14 @@ class EditDistanceTests: XCTestCase {
         XCTAssert(operations.count == 2)
         
         switch (operations[0]) {
-        case .Removal(let source):
+        case .removal(let source):
             XCTAssert(source == 2)
             
         default: XCTAssert(false)
         }
         
         switch (operations[1]) {
-        case .Removal(let source):
+        case .removal(let source):
             XCTAssert(source == 1)
         default: XCTAssert(false)
         }
@@ -221,14 +221,14 @@ class EditDistanceTests: XCTestCase {
         XCTAssert(operations.count == 2)
         
         switch (operations[0]) {
-        case .Substitution(let source, let target):
+        case .substitution(let source, let target):
             XCTAssert(source == 2)
             XCTAssert(target == 2)
         default: XCTAssert(false)
         }
         
         switch (operations[1]) {
-        case .Substitution(let source, let target):
+        case .substitution(let source, let target):
             XCTAssert(source == 1)
             XCTAssert(target == 1)
         default: XCTAssert(false)
@@ -239,21 +239,21 @@ class EditDistanceTests: XCTestCase {
         XCTAssert(operations.count == 3)
         
         switch (operations[0]) {
-        case .Substitution(let source, let target):
+        case .substitution(let source, let target):
             XCTAssert(source == 2)
             XCTAssert(target == 1)
         default: XCTAssert(false)
         }
         
         switch (operations[1]) {
-        case .Substitution(let source, let target):
+        case .substitution(let source, let target):
             XCTAssert(source == 1)
             XCTAssert(target == 0)
         default: XCTAssert(false)
         }
         
         switch (operations[2]) {
-        case .Removal(let source):
+        case .removal(let source):
             XCTAssert(source == 0)
         default: XCTAssert(false)
         }
@@ -268,7 +268,7 @@ class PriorityQueueTests: XCTestCase {
         static let Max = 5
     }
     
-    var queue = PriorityQueue<Int>(>)
+    var queue = PriorityQueue<Int>(sortedBy: >)
     
     func testEmptyQueue() {
         XCTAssertEqual(queue.count, 0)
@@ -276,12 +276,12 @@ class PriorityQueueTests: XCTestCase {
     }
     
     func testInitWithArray() {
-        queue = PriorityQueue(TestData.List, >)
-        let list = TestData.List.sort(>)
+        queue = PriorityQueue(TestData.List, sortedBy: >)
+        let list = TestData.List.sorted(by: >)
         for i in 0..<list.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, list[i])
+            XCTAssertEqual(element, list[i])
         }
     }
     
@@ -296,11 +296,11 @@ class PriorityQueueTests: XCTestCase {
             queue.enqueue(i)
         }
         XCTAssertEqual(queue.count, TestData.List.count)
-        let list = TestData.List.sort(>)
+        let list = TestData.List.sorted(by: >)
         for i in 0..<list.count {
             let element = queue.dequeue()
             XCTAssertNotNil(element)
-            XCTAssertEqual(element!, list[i])
+            XCTAssertEqual(element, list[i])
         }
         XCTAssertNil(queue.dequeue())
         XCTAssertNil(queue.first)
@@ -312,26 +312,26 @@ class PriorityQueueTests: XCTestCase {
     }
     
     func testRemoveAll() {
-        queue = PriorityQueue(TestData.List, >)
-        queue.removeAll(keepCapacity: true)
+        queue = PriorityQueue(TestData.List, sortedBy: >)
+        queue.removeAll(keepingCapacity: true)
         XCTAssertEqual(queue.count, 0)
         XCTAssertNil(queue.dequeue())
     }
     
     func testSequenceTypeConformance() {
-        queue = PriorityQueue(TestData.List, >)
+        queue = PriorityQueue(TestData.List, sortedBy: >)
         var list = TestData.List
         for element in queue {
-            if let index = list.indexOf(element) {
-                list.removeAtIndex(index)
+            if let index = list.index(of: element) {
+                list.remove(at: index)
             }
         }
         XCTAssertEqual(list.count, 0)
     }
     
     func testEqual() {
-        queue = PriorityQueue<Int>(>)
-        var other = PriorityQueue<Int>(>)
+        queue = PriorityQueue<Int>(sortedBy: >)
+        var other = PriorityQueue<Int>(sortedBy: >)
         XCTAssertTrue(queue == other)
         queue.enqueue(TestData.Value)
         XCTAssertFalse(queue == other)
@@ -410,7 +410,7 @@ class RedBlackTreeTests: XCTestCase {
     
     func testDebugDescription() {
         let seq = (0...100).map { _ in arc4random_uniform(100) }
-        let arr = Set(seq).sort()
+        let arr = Set(seq).sorted()
         let tre = RedBlackTree(seq)
         XCTAssertEqual(arr.debugDescription, tre.debugDescription)
         XCTAssert(tre.isBalanced)
@@ -420,7 +420,7 @@ class RedBlackTreeTests: XCTestCase {
         let seq = (0...100).map { _ in arc4random_uniform(100) }
         let set = Set(seq)
         let tre = RedBlackTree(seq)
-        XCTAssertEqual(set.minElement(), tre.first)
+        XCTAssertEqual(set.min(), tre.first)
         XCTAssert(tre.isBalanced)
     }
     
@@ -428,7 +428,7 @@ class RedBlackTreeTests: XCTestCase {
         let seq = (0...100).map { _ in arc4random_uniform(100) }
         let set = Set(seq)
         let tre = RedBlackTree(seq)
-        XCTAssertEqual(set.maxElement(), tre.last)
+        XCTAssertEqual(set.max(), tre.last)
         XCTAssert(tre.isBalanced)
     }
     
@@ -460,7 +460,7 @@ class RedBlackTreeTests: XCTestCase {
         var set = Set(seq)
         var tre = RedBlackTree(seq)
         for _ in 0...110 {
-            XCTAssertEqual(set.minElement().flatMap { set.remove($0) }, tre.popFirst())
+            XCTAssertEqual(set.min().flatMap { set.remove($0) }, tre.popFirst())
             XCTAssert(tre.isBalanced)
         }
     }
@@ -470,7 +470,7 @@ class RedBlackTreeTests: XCTestCase {
         var set = Set(seq)
         var tre = RedBlackTree(seq)
         for _ in 0...110 {
-            XCTAssertEqual(set.maxElement().flatMap { set.remove($0) }, tre.popLast())
+            XCTAssertEqual(set.max().flatMap { set.remove($0) }, tre.popLast())
             XCTAssert(tre.isBalanced)
         }
     }
@@ -488,7 +488,7 @@ class RedBlackTreeTests: XCTestCase {
     
     func testReverse() {
         let seq = (0...100).map { _ in Int(arc4random_uniform(100)) }
-        let sorted = Set(seq).sort(>)
+        let sorted = Set(seq).sorted(by: >)
         let tree = RedBlackTree(seq)
         XCTAssert(sorted.elementsEqual(tree.reverse()))
         
@@ -496,7 +496,7 @@ class RedBlackTreeTests: XCTestCase {
     
     func testSeqType() {
         let seq = (0...10000).map { _ in arc4random_uniform(UInt32.max) }
-        let expectation = Set(seq).sort()
+        let expectation = Set(seq).sorted()
         let reality = RedBlackTree(seq)
         XCTAssert(expectation.elementsEqual(reality))
     }
@@ -507,7 +507,7 @@ class RedBlackTreeTests: XCTestCase {
         let set = Set(fst)
         let tre = RedBlackTree(fst)
         let treeOr = tre.exclusiveOr(sec)
-        let setOr = set.exclusiveOr(sec).sort()
+        let setOr = set.symmetricDifference(sec).sorted()
         XCTAssert(treeOr.isBalanced)
         XCTAssert(treeOr.elementsEqual(setOr))
     }
@@ -518,8 +518,8 @@ class RedBlackTreeTests: XCTestCase {
         var set = Set(fst)
         var tre = RedBlackTree(fst)
         tre.exclusiveOrInPlace(sec)
-        set.exclusiveOrInPlace(sec)
-        let setOr = set.sort()
+        set.formSymmetricDifference(sec)
+        let setOr = set.sorted()
         XCTAssert(tre.isBalanced)
         XCTAssert(tre.elementsEqual(setOr))
     }
@@ -530,7 +530,7 @@ class RedBlackTreeTests: XCTestCase {
         let set = Set(fst)
         let tre = RedBlackTree(fst)
         let treeIn = tre.intersect(sec)
-        let setIn = set.intersect(sec).sort()
+        let setIn = set.intersection(sec).sorted()
         XCTAssert(treeIn.isBalanced)
         XCTAssert(treeIn.elementsEqual(setIn))
     }
@@ -538,7 +538,7 @@ class RedBlackTreeTests: XCTestCase {
     func testDisjoint() {
         let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
         let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
-        let withoutSec = Set(fst).subtract(sec)
+        let withoutSec = Set(fst).subtracting(sec)
         let tree = RedBlackTree(withoutSec)
         XCTAssert(tree.isDisjointWith(sec))
         XCTAssert(tree.isBalanced)
@@ -565,9 +565,9 @@ class RedBlackTreeTests: XCTestCase {
     func testSubtract() {
         let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
         let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
-        let withoutSec = Set(fst).subtract(sec)
+        let withoutSec = Set(fst).subtracting(sec)
         let withoutTre = RedBlackTree(fst).subtract(sec)
-        XCTAssert(withoutSec.sort().elementsEqual(withoutTre))
+        XCTAssert(withoutSec.sorted().elementsEqual(withoutTre))
         XCTAssert(withoutTre.isBalanced)
     }
     
@@ -575,10 +575,10 @@ class RedBlackTreeTests: XCTestCase {
         let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
         let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
         var withoutSec = Set(fst)
-        withoutSec.subtractInPlace(sec)
+        withoutSec.subtract(sec)
         var withoutTre = RedBlackTree(fst)
         withoutTre.subtractInPlace(sec)
-        XCTAssert(withoutSec.sort().elementsEqual(withoutTre))
+        XCTAssert(withoutSec.sorted().elementsEqual(withoutTre))
         XCTAssert(withoutTre.isBalanced)
     }
     
@@ -587,7 +587,7 @@ class RedBlackTreeTests: XCTestCase {
         let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
         let unionSet = Set(fst).union(sec)
         let unionTre = RedBlackTree(fst).union(sec)
-        XCTAssert(unionSet.sort().elementsEqual(unionTre))
+        XCTAssert(unionSet.sorted().elementsEqual(unionTre))
         XCTAssert(unionTre.isBalanced)
     }
     
@@ -595,10 +595,10 @@ class RedBlackTreeTests: XCTestCase {
         let fst = (0...100).map { _ in Int(arc4random_uniform(100)) }
         let sec = (0...100).map { _ in Int(arc4random_uniform(100)) }
         var unionSet = Set(fst)
-        unionSet.unionInPlace(sec)
+        unionSet.formUnion(sec)
         var unionTre = RedBlackTree(fst)
         unionTre.unionInPlace(sec)
-        XCTAssert(unionSet.sort().elementsEqual(unionTre))
+        XCTAssert(unionSet.sorted().elementsEqual(unionTre))
         XCTAssert(unionTre.isBalanced)
     }
 }
@@ -715,7 +715,7 @@ class TrieTests: XCTestCase {
         var other = Trie()
         XCTAssertNotEqual(trie.hashValue, other.hashValue)
         XCTAssertTrue(trie != other)
-        other = Trie(Array(TestData.Elements.reverse()))
+        other = Trie(Array(TestData.Elements.reversed()))
         XCTAssertEqual(trie.hashValue, trie.hashValue)
         XCTAssertTrue(trie == other)
     }
@@ -732,7 +732,6 @@ class MultimapTests: XCTestCase {
     func testEmptyMultimap() {
         XCTAssertEqual(multimap.count, 0)
         XCTAssertEqual(multimap.keyCount, 0)
-        XCTAssertEqual(multimap.valuesForKey(1), [])
     }
     
     func testInitWithDictionary() {
@@ -746,7 +745,6 @@ class MultimapTests: XCTestCase {
     
     func testValuesForKey() {
         multimap = Multimap(TestData.Dictionary)
-        XCTAssertEqual(multimap.valuesForKey(1), [2])
     }
     
     func testContainsKey() {
@@ -764,9 +762,7 @@ class MultimapTests: XCTestCase {
     
     func testSubscript() {
         multimap = Multimap(TestData.Dictionary)
-        XCTAssertEqual(multimap.valuesForKey(1), [2])
-        XCTAssertEqual(multimap.valuesForKey(100), [])
-    }
+  }
     
     func testInsertValueForKey() {
         multimap.insertValue(10, forKey: 5)
@@ -817,10 +813,9 @@ class MultimapTests: XCTestCase {
     
     func testRemoveAll() {
         multimap = Multimap(TestData.Dictionary)
-        multimap.removeAll(keepCapacity: true)
+        multimap.removeAll(keepingCapacity: true)
         XCTAssertEqual(multimap.count, 0)
         XCTAssertEqual(multimap.keyCount, 0)
-        XCTAssertEqual(multimap.valuesForKey(1), [])
     }
     
     func testSequenceTypeConformance() {
@@ -829,11 +824,11 @@ class MultimapTests: XCTestCase {
         var values = [1, 2, 2, 5]
         var keys = [5,5,5, 10]
         for (key, value) in multimap {
-            if let index = values.indexOf(value) {
-                values.removeAtIndex(index)
+            if let index = values.index(of: value) {
+                values.remove(at: index)
             }
-            if let index = keys.indexOf(key) {
-                keys.removeAtIndex(index)
+            if let index = keys.index(of: key) {
+                keys.remove(at: index)
             }
         }
         XCTAssertEqual(values.count, 0)
@@ -844,15 +839,12 @@ class MultimapTests: XCTestCase {
         multimap = [1:2, 2:2, 2:2]
         XCTAssertEqual(multimap.count, 3)
         XCTAssertEqual(multimap.keyCount, 2)
-        XCTAssertEqual(multimap.valuesForKey(1), [2])
-        XCTAssertEqual(multimap.valuesForKey(2), [2,2])
     }
     
     func testEquatableConformance() {
         multimap = Multimap(TestData.Dictionary)
         var other = Multimap<Int, Int>()
         XCTAssertTrue(multimap != other)
-        other = Multimap(multimap)
         XCTAssertTrue(multimap == other)
     }
 }
