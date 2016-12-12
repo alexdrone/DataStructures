@@ -6,8 +6,9 @@
 [![Platform](https://img.shields.io/badge/platform-ios | macos | watchos | tvos -lightgrey.svg?style=flat)](#)
 [![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-A collection of data structures implemented in Swift.
-For the time being the available data structures are:
+A collection of data structures implemented in Swift. 
+(forked from [Buckets](https://github.com/mauriciosantos/Buckets-Swift/) and [SwiftDataStructures](https://github.com/oisdk/SwiftDataStructures))
+Available data structures are:
 
 - LinkedList
 - SortedLinkedList
