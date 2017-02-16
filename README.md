@@ -7,7 +7,8 @@
 [![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 A collection of data structures implemented in Swift.
-Available data structures are:
+
+The available data structures are:
 
 - LinkedList
 - SortedLinkedList
