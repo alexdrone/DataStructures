@@ -53,7 +53,7 @@ About copying structs:
 
 ## Data Structures
 
-####LinkedList
+#### LinkedList
 
 All of the operations perform as could be expected for a doubly-linked list. Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index.
 
@@ -75,7 +75,7 @@ print(sortedLinkedList) //[1,2,3]
 
 ```
 
-####Graph
+#### Graph
 
 A graph can be constructed from a array literal, or a dependency list.
 Operations like *BFS* and *DFS* visit, *shortestPath* and *topologicalSort* are available to the user.
@@ -133,7 +133,7 @@ g.topologicalSort() // ["A", "B", "D", "C", "E", "F"]
 
 ```
 
-####Stack and Queue
+#### Stack and Queue
 
 Stacks and Queues are implemented through Array and LinkedList extension
 Note that this implementation is not synchronized, it must be synchronized externally.
@@ -166,7 +166,7 @@ extension Array: Queue {
 
 ```
 
-####PriorityQueue
+#### PriorityQueue
 An unbounded priority queue based on a priority heap. The elements of the priority queue are ordered according to the sort closure passed as argument in the constructor.
 The head of this queue is the least element with respect to the specified ordering. If multiple elements are tied for least value, the head is one of those elements -- ties are broken arbitrarily.
 
@@ -181,7 +181,7 @@ pQueue.dequeue() // 1
 
 ```
 
-####BloomFilter
+#### BloomFilter
 
 A Bloom filter is a space-efficient probabilistic data structure that is used to test whether an element is a member of a set. False positive matches are possible, but false negatives are not, thus a Bloom filter has a 100% recall rate. In other words, a query returns either "possibly in set" or "definitely not in set".
 
@@ -192,7 +192,7 @@ bFilter.contains("a") // true
 
 ```
 
-####Trie
+#### Trie
 
 Is an ordered tree data structure that is used to store a dynamic set or associative array where the keys are strings.
 Note that this implementation is not synchronized, it must be synchronized externally.
@@ -204,7 +204,7 @@ trie.insert("AB")
 trie.findPrefix("A") // ["A", "AB"]
 
 ```
-####RedBlackTree
+#### RedBlackTree
 
 A red–black tree is a kind of self-balancing binary search tree. 
 Balance is preserved by painting each node of the tree with one of two colors (typically called 'red' and 'black') in a way that satisfies certain properties, which collectively constrain how unbalanced the tree can become in the worst case.
@@ -222,7 +222,7 @@ import DataStructures
 
 ```
 
-####Multimap
+#### Multimap
 
 A generalization of a map or associative array data type in which more than one value may be associated with and returned for a given key.
 Note that this implementation is not synchronized, it must be synchronized externally.
@@ -236,7 +236,7 @@ multimap["a"] // [1, 5]
 
 ```
 
-####Bimap
+#### Bimap
 
 A generalization of a map or associative array data type in which more than one value may be associated with and returned for a given key.
 Note that this implementation is not synchronized, it must be synchronized externally.
@@ -251,7 +251,7 @@ bimap[key: "b"] // 3
 
 ```
 
-####Bag
+#### Bag
 
 Similar to a set but allows repeated ("equal") values (duplicates). This is used in two distinct senses: either equal values are considered identical, and are simply counted, or equal values are considered equivalent, and are stored as distinct items. 
 
@@ -267,7 +267,7 @@ bag.count("a") // 2
 
 ## Additions
 
-####Edit Distance for Arrays
+#### Edit Distance for Arrays
 
 The edit distance is a way of quantifying how dissimilar two arrays are to one another by counting the minimum number of operations required to transform one array into the other
 
@@ -283,7 +283,7 @@ public enum EditDistanceOperation {
 
 ```
 
-####Bitmask Operations
+#### Bitmask Operations
 
 ```swift
 public struct BitMask {
